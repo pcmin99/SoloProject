@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.soloproject.domain.NewsVO;
 import com.example.soloproject.domain.SoccerListVO;
 import com.example.soloproject.dto.Member.MemberJoinRequestDto;
 import com.example.soloproject.service.member.MemberService;
@@ -94,8 +95,9 @@ public class SoccerListController {
 
 
     // main 페이지 오픈 api 
+    // 프리미어리그 관련한 개발을 하기에 defaultValue = 프리미어리그로 
     @GetMapping("/main")
-    public String main ( HttpSession session,Model model) throws IOException, InterruptedException {
+    public String main ( HttpSession session,Model model, @RequestParam(value = "query", defaultValue = "프리미어리그") String query ) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create("https://api-football-v1.p.rapidapi.com/v2/fixtures/league/6280?timezone=Europe/London"))
         .header("x-rapidapi-key", "6e1b55783bmsh96a786c871fd0d6p1660d6jsn4ac2f3db547f")
@@ -117,6 +119,25 @@ public class SoccerListController {
                 model.addAttribute("user", userDetails);
             }
         }
+
+        String clientId = "VThSYhofsxKXIWAvv9Wx";
+        String clientSecret = "WRmau6BH7U" ; 
+        try {
+            query = URLEncoder.encode(query, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("검색어 인코딩 실패",e);
+        }
+        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + query;    // JSON 결과
+
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("X-Naver-Client-Id", clientId);
+        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        String responseBody = get(apiURL,requestHeaders);    
+        // JSON 응답을 NewsVO로 변환 후 모델에 추가
+        NewsVO newsVO = objectMapper.readValue(responseBody, NewsVO.class);
+        model.addAttribute("leagueNews", newsVO);
+        System.out.println(responseBody);
+
         return "main" ;
     }
 
@@ -174,25 +195,7 @@ public class SoccerListController {
 
 
 
-    @GetMapping("/login/apitest")
-    public void apiTest(@RequestParam(value = "query", defaultValue = "프리미어리그") String query){
-        String clientId = "VThSYhofsxKXIWAvv9Wx";
-        String clientSecret = "WRmau6BH7U" ; 
-        try {
-            query = URLEncoder.encode(query, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("검색어 인코딩 실패",e);
-        }
-        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + query;    // JSON 결과
-
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("X-Naver-Client-Id", clientId);
-        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
-
-        System.out.println(responseBody);
-
-    }
+    // // 네이버 뉴스 api 
     private static String get(String apiUrl, Map<String, String> requestHeaders){
         HttpURLConnection con = connect(apiUrl);
         try {
@@ -226,17 +229,22 @@ public class SoccerListController {
         }
     }
 
-    private static String readBody(InputStream body){
-        InputStreamReader streamReader = new InputStreamReader(body);
-
+    private static String readBody(InputStream body) {
+        InputStreamReader streamReader;
+        try {
+            streamReader = new InputStreamReader(body, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("UTF-8 인코딩이 지원되지 않습니다.", e);
+        }
+    
         try (BufferedReader lineReader = new BufferedReader(streamReader)) {
             StringBuilder responseBody = new StringBuilder();
-
+    
             String line;
             while ((line = lineReader.readLine()) != null) {
                 responseBody.append(line);
             }
-
+    
             return responseBody.toString();
         } catch (IOException e) {
             throw new RuntimeException("API 응답을 읽는 데 실패했습니다.", e);

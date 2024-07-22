@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/","/WEB-INF/views/login/**","/login/**").permitAll() // /,login 관련 url에 대한 접근 허용
-                                .requestMatchers("/js/**","/css/**","/images/**","/fonts/**").permitAll() // js 전체 권한 
+                                .requestMatchers("/js/**","/css/**","/images/**","/fonts/**","/favicon.ico").permitAll() // js 전체 권한 
                                 .requestMatchers("/WEB-INF/views/main.jsp","/main/**").permitAll() // main 페이지
                                 .requestMatchers("/WEB-INF/views/footer/**","/footer/**").permitAll() // footer 페이지
                                 .requestMatchers("/posts/**", "/WEB-INF/views/posts/**").hasRole(Role.USER.name()) // 사용자 권한이 필요한 url
