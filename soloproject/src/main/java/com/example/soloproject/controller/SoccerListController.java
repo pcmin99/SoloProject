@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,9 +31,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.soloproject.domain.NewsVO;
+import com.example.soloproject.domain.SearchResultVO;
 import com.example.soloproject.domain.SoccerListVO;
 import com.example.soloproject.dto.Member.MemberJoinRequestDto;
 import com.example.soloproject.service.member.MemberService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpSession;
@@ -46,10 +50,12 @@ public class SoccerListController {
     @Autowired
     private MemberService memberService ;
 
-    @RequestMapping("/{step}")
-    public String viewPage(@PathVariable String step) {
-        return step;
-    }
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    // @RequestMapping("/{step}")
+    // public String viewPage(@PathVariable String step) {
+    //     return step;
+    // }
 
     // 로그인
     @RequestMapping("/login/login")
@@ -94,6 +100,30 @@ public class SoccerListController {
     }
 
 
+    // // defaultValue 검색 값이 없을시 기본으로 프리미어리그 
+    @PostMapping("/searchImg")
+    @ResponseBody
+    public ResponseEntity<SearchResultVO> searchText(Model model, @RequestParam(value = "searchImg" , defaultValue = "프리미어리그") String searchImg  ) throws JsonMappingException, JsonProcessingException {
+
+        // 네이버 뉴스 api
+        String clientId = "VThSYhofsxKXIWAvv9Wx";
+        String clientSecret = "WRmau6BH7U" ; 
+        try {
+            searchImg = URLEncoder.encode(searchImg, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("검색어 인코딩 실패",e);
+        }
+
+        String apiURL = "https://openapi.naver.com/v1/search/image?query=" + searchImg;    // JSON 결과
+        Map<String, String> requestHeaders = new HashMap<>();
+        requestHeaders.put("X-Naver-Client-Id", clientId);
+        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        String responseBody = get(apiURL,requestHeaders);    
+        // JSON 응답을 NewsVO로 변환 후 모델에 추가
+        SearchResultVO searchResultVO = objectMapper.readValue(responseBody, SearchResultVO.class);
+        return  ResponseEntity.ok(searchResultVO); 
+    }
+
     // main 페이지 오픈 api 
     // 프리미어리그 관련한 개발을 하기에 defaultValue = 프리미어리그로 
     @GetMapping("/main")
@@ -120,6 +150,8 @@ public class SoccerListController {
             }
         }
 
+
+        // 네이버 뉴스 api
         String clientId = "VThSYhofsxKXIWAvv9Wx";
         String clientSecret = "WRmau6BH7U" ; 
         try {
@@ -182,16 +214,16 @@ public class SoccerListController {
     
     
     // 오픈 api 예제 
-    @RequestMapping("/main1")
-    public void teamDetail11( Model model) throws IOException, InterruptedException {
-    HttpRequest request = HttpRequest.newBuilder()
-		.uri(URI.create("https://api-football-v1.p.rapidapi.com/v2/odds/bookmakers/"))
-		.header("x-rapidapi-key", "6e1b55783bmsh96a786c871fd0d6p1660d6jsn4ac2f3db547f")
-		.header("x-rapidapi-host", "api-football-v1.p.rapidapi.com")
-		.method("GET", HttpRequest.BodyPublishers.noBody())
-		.build();
-        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-    }
+    // @RequestMapping("/main1")
+    // public void teamDetail11( Model model) throws IOException, InterruptedException {
+    // HttpRequest request = HttpRequest.newBuilder()
+	// 	.uri(URI.create("https://api-football-v1.p.rapidapi.com/v2/odds/bookmakers/"))
+	// 	.header("x-rapidapi-key", "6e1b55783bmsh96a786c871fd0d6p1660d6jsn4ac2f3db547f")
+	// 	.header("x-rapidapi-host", "api-football-v1.p.rapidapi.com")
+	// 	.method("GET", HttpRequest.BodyPublishers.noBody())
+	// 	.build();
+    //     HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    // }
 
 
 

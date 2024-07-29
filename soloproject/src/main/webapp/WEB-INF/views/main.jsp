@@ -69,6 +69,7 @@
     </script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/teamid.js"></script>
+    <script src="/js/searchImg.js"></script>
   </head>
   <body>
     <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -133,10 +134,10 @@
                   <!-- RD Navbar Search-->
                   <div class="rd-navbar-search">
                     <button class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
-                    <form class="rd-search" action="#" data-search-live="rd-search-results-live" method="GET">
+                    <form class="rd-search" action="" data-search-live="rd-search-results-live" method="">
                       <div class="form-wrap">
                         <label class="form-label" for="rd-navbar-search-form-input">Team Search..</label>
-                        <input class="rd-navbar-search-form-input form-input" id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off">
+                        <input class="rd-navbar-search-form-input form-input" id="rd-navbar-search-form-input" type="text" name="searchImg" autocomplete="off" id="searchImg" value="" >
                         <div class="rd-search-results-live" id="rd-search-results-live"></div>
                       </div>
                       <button class="rd-search-form-submit fl-budicons-launch-search81" type="submit"></button>
@@ -151,20 +152,14 @@
                                     <ul class="rd-navbar-nav">
                                       <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Home</a>
                                       </li>
-                                      <li class="rd-nav-item"><a class="rd-nav-link" href="https://livedemo00.template-help.com/wt_63853_v4/soccer/index.html">Game overview</a>
+                                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">Game overview</a>
                                       </li>
-                                      <li class="rd-nav-item"><a class="rd-nav-link" href="https://livedemo00.template-help.com/wt_63853_v4/soccer/index.html">Typography</a>
+                                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">Typography</a>
                                       </li>
-                                      <li class="rd-nav-item"><a class="rd-nav-link" href="https://livedemo00.template-help.com/wt_63853_v4/soccer/index.html">Contact us</a>
+                                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">Contact us</a>
                                       </li>
                                     </ul>
                   <div class="rd-navbar-main-element">
-                    <ul class="list-inline list-inline-sm">
-                      <li><a class="icon icon-xs icon-light fa fa-facebook" href="#"></a></li>
-                      <li><a class="icon icon-xs icon-light fa fa-twitter" href="#"></a></li>
-                      <li><a class="icon icon-xs icon-light fa fa-google-plus" href="#"></a></li>
-                      <li><a class="icon icon-xs icon-light fa fa-instagram" href="#"></a></li>
-                    </ul>
                   </div>
                 </div>
               </div>
@@ -172,27 +167,6 @@
           </nav>
         </div>
       </header>
-      <!-- Swiper-->
-      <section class="section swiper-container swiper-slider swiper-classic bg-gray-2" data-loop="true" data-autoplay="4000" data-simulate-touch="false" data-slide-effect="fade">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide text-center" data-slide-bg="images/slider-1-slide-1-1920x671.jpg">
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-xl-6">
-                  <div class="swiper-slide-caption">
-                    <h1 data-caption-animate="fadeInUp" data-caption-delay="100">We play Soccer</h1>
-                    <h4 data-caption-animate="fadeInUp" data-caption-delay="200">like no one else in the united states</h4><a class="button button-primary" data-caption-animate="fadeInUp" data-caption-delay="300" href="about-us.html">Read More</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-button swiper-button-prev"></div>
-        <div class="swiper-button swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-      </section>
-
       <!-- Latest News-->
       <section class="section section-md bg-gray-100">
         <div class="container">
@@ -203,156 +177,12 @@
                 <article class="heading-component">
                   <div class="heading-component-inner">
                     <h5 class="heading-component-title">Popular news
-                    </h5><a class="button button-xs button-gray-outline" href="#">All news</a>
+                    </h5>
                   </div>
                 </article>
                 <div class="row row-30">
-                  <div class="col-md-6">
-                    <!-- Post Future-->
-                    <article class="post-future"><a class="post-future-figure" href="#"><img src="images/news-2-1-368x287.jpg" alt="" width="368" height="287"/></a>
-                      <div class="post-future-main">
-                        <h4 class="post-future-title"><a href="#">Sadio mane still makes a difference, sam wilson admits</a></h4>
-                        <div class="post-future-meta">
-                          <!-- Badge-->
-                          <div class="badge badge-secondary">The Team
-                          </div>
-                          <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
-                            <time datetime="2020">April 15, 2020</time>
-                          </div>
-                        </div>
-                        <hr/>
-                        <div class="post-future-text">
-                          <p>Liverpool would love to welcome Philippe Coutinho back, but Sadio Mane is carrying...</p>
-                        </div>
-                        <div class="post-future-footer group-flex group-flex-xs"><a class="button button-gray-outline" href="#">Read more</a>
-                          <div class="post-future-share">
-                            <div class="inline-toggle-parent">
-                              <div class="inline-toggle icon material-icons-share"></div>
-                              <div class="inline-toggle-element">
-                                <ul class="list-inline">
-                                  <li>Share</li>
-                                  <li><a class="icon fa-facebook" href="#"></a></li>
-                                  <li><a class="icon fa-twitter" href="#"></a></li>
-                                  <li><a class="icon fa-google-plus" href="#"></a></li>
-                                  <li><a class="icon fa-instagram" href="#"></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col-md-6">
-                    <!-- Post Future-->
-                    <article class="post-future"><a class="post-future-figure" href="#"><img src="images/news-2-2-368x287.jpg" alt="" width="368" height="287"/></a>
-                      <div class="post-future-main">
-                        <h4 class="post-future-title"><a href="#">Robertson's decent debut at european cup 2020</a></h4>
-                        <div class="post-future-meta">
-                          <!-- Badge-->
-                          <div class="badge badge-secondary">The Team
-                          </div>
-                          <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
-                            <time datetime="2020">April 15, 2020</time>
-                          </div>
-                        </div>
-                        <hr/>
-                        <div class="post-future-text">
-                          <p>Robertson, in his first Anfield outing as a Liverpool player, looked assured at left-back...</p>
-                        </div>
-                        <div class="post-future-footer group-flex group-flex-xs"><a class="button button-gray-outline" href="#">Read more</a>
-                          <div class="post-future-share">
-                            <div class="inline-toggle-parent">
-                              <div class="inline-toggle icon material-icons-share"></div>
-                              <div class="inline-toggle-element">
-                                <ul class="list-inline">
-                                  <li>Share</li>
-                                  <li><a class="icon fa-facebook" href="#"></a></li>
-                                  <li><a class="icon fa-twitter" href="#"></a></li>
-                                  <li><a class="icon fa-google-plus" href="#"></a></li>
-                                  <li><a class="icon fa-instagram" href="#"></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col-md-6">
-                    <!-- Post Future-->
-                    <article class="post-future"><a class="post-future-figure" href="#"><img src="images/news-2-3-368x287.jpg" alt="" width="368" height="287"/></a>
-                      <div class="post-future-main">
-                        <h4 class="post-future-title"><a href="#">Pochettino and ‘gaffer’s son’ Rose estranged – reports</a></h4>
-                        <div class="post-future-meta">
-                          <!-- Badge-->
-                          <div class="badge badge-secondary">The Team
-                          </div>
-                          <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
-                            <time datetime="2020">April 15, 2020</time>
-                          </div>
-                        </div>
-                        <hr/>
-                        <div class="post-future-text">
-                          <p>Danny Rose and Mauricio Pochettino were once so close that he was nicknamed “the gaffer’s...</p>
-                        </div>
-                        <div class="post-future-footer group-flex group-flex-xs"><a class="button button-gray-outline" href="#">Read more</a>
-                          <div class="post-future-share">
-                            <div class="inline-toggle-parent">
-                              <div class="inline-toggle icon material-icons-share"></div>
-                              <div class="inline-toggle-element">
-                                <ul class="list-inline">
-                                  <li>Share</li>
-                                  <li><a class="icon fa-facebook" href="#"></a></li>
-                                  <li><a class="icon fa-twitter" href="#"></a></li>
-                                  <li><a class="icon fa-google-plus" href="#"></a></li>
-                                  <li><a class="icon fa-instagram" href="#"></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col-md-6">
-                    <!-- Post Future-->
-                    <article class="post-future"><a class="post-future-figure" href="#"><img src="images/news-2-4-368x287.jpg" alt="" width="368" height="287"/></a>
-                      <div class="post-future-main">
-                        <h4 class="post-future-title"><a href="#">Coutinho’s camp: It was all Barca’s fault and we can prove it</a></h4>
-                        <div class="post-future-meta">
-                          <!-- Badge-->
-                          <div class="badge badge-secondary">The Team
-                          </div>
-                          <div class="post-future-time"><span class="icon mdi mdi-clock"></span>
-                            <time datetime="2020">April 15, 2020</time>
-                          </div>
-                        </div>
-                        <hr/>
-                        <div class="post-future-text">
-                          <p>Philippe Coutinho is reportedly seeking clear-the-air talks with Liverpool after...</p>
-                        </div>
-                        <div class="post-future-footer group-flex group-flex-xs"><a class="button button-gray-outline" href="#">Read more</a>
-                          <div class="post-future-share">
-                            <div class="inline-toggle-parent">
-                              <div class="inline-toggle icon material-icons-share"></div>
-                              <div class="inline-toggle-element">
-                                <ul class="list-inline">
-                                  <li>Share</li>
-                                  <li><a class="icon fa-facebook" href="#"></a></li>
-                                  <li><a class="icon fa-twitter" href="#"></a></li>
-                                  <li><a class="icon fa-google-plus" href="#"></a></li>
-                                  <li><a class="icon fa-instagram" href="#"></a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <div class="col-md-12">
-                  </div>
+                <div id="searchResults" class="row"></div>
+                  
                 </div>
               </div>
               <div class="main-component">
@@ -416,23 +246,19 @@
                   <!-- List Post Classic-->
                   <div class="list-post-classic">
                                       <!-- Post Classic-->
-                                      <c:forEach items="${leagueNews.items}" var="newsItem" varStatus="status" >
+                                      <c:forEach items="${leagueNews.items}" var="items" varStatus="status" >
                                       <article class="post-classic">
                                         <div class="post-classic-aside">
-                                          <a class="post-classic-figure" href="#">
-                                            <img src="images/blog-element-1-94x94.jpg" alt="" width="94" height="94"/>
-                                          </a>
                                         </div>
                                         <div class="post-classic-main">
                                           <p class="post-classic-title">
-                                            <a href="${newsItem.link}">
-                                            ${newsItem.title}
+                                            <a href="${items.link}">
+                                            ${items.title}
                                             </a>
                                           </p>
                                           <div class="post-classic-time">
-                                            <span class="icon mdi mdi-clock">
-                                            </span>
-                                            <time datetime="2020">April 15, 2020
+                                            <time datetime="2020">
+                                              ${items.description}
                                             </time>
                                           </div>
                                         </div>
@@ -558,19 +384,6 @@
      <footer class="section footer-classic footer-classic-dark context-dark">
         <div class="footer-classic-main">
           <div class="container">
-            <p class="heading-7">Subscribe to our Newsletter</p>
-            <!-- RD Mailform-->
-            <form class="rd-mailform rd-form rd-inline-form-creative" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
-              <div class="form-wrap">
-                <div class="form-input-wrap">
-                  <input class="form-input" id="footer-form-email" type="email" name="email" data-constraints="@Required">
-                  <label class="form-label" for="footer-form-email">Enter your E-mail</label>
-                </div>
-              </div>
-              <div class="form-button">
-                <button class="button button-primary-outline" type="submit" aria-label="Send"><span class="icon fl-budicons-launch-right164"></span></button>
-              </div>
-            </form>
             <div class="row row-50">
               <div class="col-lg-5 text-center text-sm-left">
                 <article class="unit unit-sm-horizontal unit-middle justify-content-center justify-content-sm-start footer-classic-info">
@@ -584,14 +397,6 @@
                   <li>
                     <div class="unit unit-horizontal unit-middle">
                       <div class="unit-left">
-                        <svg class="svg-color-primary svg-sizing-35" x="0px" y="0px" width="27px" height="27px" viewbox="0 0 27 27" preserveAspectRatio="none">
-                          <path d="M2,26c0,0.553,0.447,1,1,1h5c0.553,0,1-0.447,1-1v-8.185c-0.373-0.132-0.711-0.335-1-0.595V19 H6v-1v-1v-1H5v1v2H3v-9H2v1H1V9V8c0-0.552,0.449-1,1-1h1h1h3h0.184c0.078-0.218,0.173-0.426,0.297-0.617C8.397,5.751,9,4.696,9,3.5 C9,1.567,7.434,0,5.5,0S2,1.567,2,3.5C2,4.48,2.406,5.364,3.056,6H3H2C0.895,6,0,6.895,0,8v7c0,1.104,0.895,2,2,2V26z M8,26H6v-6h2 V26z M5,26H3v-6h2V26z M3,3.5C3,2.121,4.121,1,5.5,1S8,2.121,8,3.5S6.879,6,5.5,6S3,4.879,3,3.5 M1,15v-3h1v4 C1.449,16,1,15.552,1,15"></path>
-                          <path d="M11.056,6H11h-1C8.895,6,8,6.895,8,8v7c0,1.104,0.895,2,2,2v9c0,0.553,0.447,1,1,1h5 c0.553,0,1-0.447,1-1v-9c1.104,0,2-0.896,2-2V8c0-1.105-0.896-2-2-2h-1h-0.056C16.594,5.364,17,4.48,17,3.5 C17,1.567,15.434,0,13.5,0S10,1.567,10,3.5C10,4.48,10.406,5.364,11.056,6 M10,15v1c-0.551,0-1-0.448-1-1v-3h1V15z M11,20h2v6h-2 V20z M16,26h-2v-6h2V26z M17,16v-1v-3h1v3C18,15.552,17.551,16,17,16 M17,7c0.551,0,1,0.448,1,1v1v1v1h-1v-1h-1v5v4h-2v-1v-1v-1h-1 v1v1v1h-2v-4v-5h-1v1H9v-1V9V8c0-0.552,0.449-1,1-1h1h1h3h1H17z M13.5,1C14.879,1,16,2.121,16,3.5C16,4.879,14.879,6,13.5,6 S11,4.879,11,3.5C11,2.121,12.121,1,13.5,1"></path>
-                          <polygon points="15,13 14,13 14,9 13,9 12,9 12,10 13,10 13,13 12,13 12,14 13,14 14,14 15,14 	"></polygon>
-                          <polygon points="7,14 7,13 5,13 5,12 6,12 7,12 7,10 7,9 6,9 4,9 4,10 6,10 6,11 5,11 4,11 4,12 4,13 4,14 5,14"></polygon>
-                          <polygon points="20,10 22,10 22,11 21,11 21,12 22,12 22,13 20,13 20,14 22,14 23,14 23,13 23,12 23,11 23,10 23,9 22,9 20,9 	"></polygon>
-                          <path d="M19.519,6.383C19.643,6.574,19.738,6.782,19.816,7H20h3h1h1c0.551,0,1,0.448,1,1v3h-1v-1h-1v9 h-2v-2v-1h-1v1v2h-2v-1.78c-0.289,0.26-0.627,0.463-1,0.595V26c0,0.553,0.447,1,1,1h5c0.553,0,1-0.447,1-1v-9c1.104,0,2-0.896,2-2 V8c0-1.105-0.896-2-2-2h-1h-0.056C24.594,5.364,25,4.48,25,3.5C25,1.567,23.434,0,21.5,0S18,1.567,18,3.5 c0,0.736,0.229,1.418,0.617,1.981C18.861,5.834,19.166,6.14,19.519,6.383 M19,20h2v6h-2V20z M24,26h-2v-6h2V26z M26,15 c0,0.552-0.449,1-1,1v-4h1V15z M21.5,1C22.879,1,24,2.121,24,3.5C24,4.879,22.879,6,21.5,6C20.121,6,19,4.879,19,3.5 C19,2.121,20.121,1,21.5,1"></path>
-                        </svg>
                       </div>
                       <div class="unit-body">
                         <h6>Join Our Team</h6><a class="link" href="mailto:#">info@demolink.org</a>
@@ -613,12 +418,6 @@
                 </ul>
                 <div class="group-md group-middle">
                   <div class="group-item">
-                    <ul class="list-inline list-inline-xs">
-                      <li><a class="icon icon-corporate fa fa-facebook" href="#"></a></li>
-                      <li><a class="icon icon-corporate fa fa-twitter" href="#"></a></li>
-                      <li><a class="icon icon-corporate fa fa-google-plus" href="#"></a></li>
-                      <li><a class="icon icon-corporate fa fa-instagram" href="#"></a></li>
-                    </ul>
                   </div><a class="button button-sm button-gray-outline" href="contact-us.html">Get in Touch</a>
                 </div>
               </div>

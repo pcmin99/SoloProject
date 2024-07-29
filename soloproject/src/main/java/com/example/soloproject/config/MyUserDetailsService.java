@@ -17,10 +17,15 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private final MemberRepository memberRepository ;
     
+    // UserDetails 객체를 반환하여 일반 로그인 상황에 사용
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         Member member = memberRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("없는 회원"));
      
-        return User.builder().username(member.getUsername()).password(member.getPassword()).roles(member.getRole().name()).build() ;
+        return User.builder()
+        .username(member.getUsername())
+        .password(member.getPassword())
+        .roles(member.getRole().name())
+        .build() ;
     }
     
 }

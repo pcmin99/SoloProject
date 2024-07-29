@@ -22,7 +22,6 @@ public class MemberService {
     private final PasswordEncoder passwordencoder ; 
 
     public String addUser(@ModelAttribute MemberJoinRequestDto requestDto){
-        System.out.println("memberService->addUSer"+requestDto);
         return memberRepository.save(requestDto.toEntity(passwordencoder)).getUsername();
     }
 

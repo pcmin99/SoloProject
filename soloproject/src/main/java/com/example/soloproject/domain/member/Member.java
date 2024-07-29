@@ -29,12 +29,23 @@ public class Member {
     @Column(nullable = false)
     private Role role ;
 
+    // provider : google이 들어감
+    @Column
+    private String provider;
+
+    // providerId : 구굴 로그인 한 유저의 고유 ID가 들어감
+    @Column
+    private String providerId;
+
     @Builder
-    public Member(String username, String password, Role role, String email){
+    public Member(String username, String password, Role role, String email, String providerId, String provider){
         this.username = username;
         this.password = password;
         this.role = role;
         this.email = email ; 
+        this.providerId = providerId ; 
+        this.provider = provider ; 
+        
     }
 
     public String getRoleKey(){

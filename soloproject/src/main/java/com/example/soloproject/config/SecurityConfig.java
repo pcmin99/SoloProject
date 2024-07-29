@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -30,11 +30,15 @@ public class SecurityConfig {
 
     private final MyUserDetailsService myUserDetailsService ; 
 
+    private final CustomOAuth2UserService customOAuth2UserService;
+
     // db에 사용자, 관리자 비밀번호 랜덤텍스트로 저장 
     @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder() ; 
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
+    
+    
 
     // 기본 url, 권한 설정 
     @SuppressWarnings("removal")
@@ -65,24 +69,34 @@ public class SecurityConfig {
                                 .passwordParameter("password") // 3번-> 로그인시 사용자 패스워드 파라미터 
                                 .loginProcessingUrl("/loginonlyLogin") // 4번 로그인 폼 처리 url
                                 .defaultSuccessUrl("/main", true) // 5번 로그인 성공시 갈 url
-                )
+                ).oauth2Login(oauth2  ->
+                oauth2
+                        .loginPage("/login") // 페이지
+                        .defaultSuccessUrl("/main", true) //로그인 성공시 갈 url
+                        .userInfoEndpoint()
+                        .userService(customOAuth2UserService)
+                ) // 소셜 로그인 
                 .logout(logoutConfig ->
-                        logoutConfig
+                        logoutConfig    
                         .logoutUrl("/login/logout") // 로그아웃을 처리할 url 
-                        .logoutSuccessUrl("/main") // 6번 로그아웃 성공시 이동할 url 
+                        .logoutSuccessUrl("/main") // 6번 로그아웃 성공시 이동할 url
                 )
                 .userDetailsService(myUserDetailsService); // 7번 사용자 정의 myUserDetailsService
-        http.sessionManagement()
+        http.sessionManagement(session -> session
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션을 생성할 필요가 있을 때만 생성
                 .maximumSessions(1) //세션 최대 허용 수 
-                .maxSessionsPreventsLogin(false); // false이면 중복 로그인하면 이전 로그인이 풀린다.
-
+                .maxSessionsPreventsLogin(false) // false이면 중복 로그인하면 이전 로그인이 풀린다.
+        );
            
 
         return http.build();
     }
     
+    // 소셜 로그인 URL은 Spring Security가 자동으로 처리하며
+    // oauth2/authorization/{provider} 형식의 URL을 사용
+    // 스프링 시큐리티에서 로그아웃시 자동 세션 삭제 이지만 소셜 로그인시 자동 로그인이 계속 되는 문제 때문에 .invalidate~~ 설정
 
-    public final AuthenticationEntryPoint unauthorizedEntryPoint =
+        public final AuthenticationEntryPoint unauthorizedEntryPoint =
             (request,response, authException) -> {
                 ErrorResponse fail = new ErrorResponse(HttpStatus.UNAUTHORIZED, "Spring security unauthorized...");
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
@@ -93,7 +107,7 @@ public class SecurityConfig {
                 writer.flush();
             };
 
-    public  final AccessDeniedHandler accessDeniedHandler =
+        public  final AccessDeniedHandler accessDeniedHandler =
             (request, response, accessDeniedException) -> {
                 ErrorResponse fail = new ErrorResponse(HttpStatus.FORBIDDEN, "Spring security forbidden...");
                 response.setStatus(HttpStatus.FORBIDDEN.value());
@@ -105,7 +119,9 @@ public class SecurityConfig {
             };
 
 
-            //  Full authentication is required to access this resource 로 인해 권한 해결 안됌
+        
+
+
 
     @Getter
     @RequiredArgsConstructor

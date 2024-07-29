@@ -69,9 +69,14 @@
                     </div>
                     
                     <div class="login__social">
-                        <a href="#" class="login__social--icon"><i class='bx bxl-google'></i></a>
-                        <a href="#" class="login__social--icon"><i class='bx bxl-github'></i></a>
-                        <a href="#" class="login__social--icon"><i class='bx bxl-facebook'></i></a>
+                        <a href="/oauth2/authorization/google" class="login__social--icon">
+                            <i class='bx bxl-google'>
+                            </i>
+                        </a>
+                        <a href="/oauth2/authorization/facebook" class="login__social--icon">
+                            <i class='bx bxl-facebook'>
+                            </i>
+                        </a>
                     </div>
                 </form>
             </div>
