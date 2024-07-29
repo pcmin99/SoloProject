@@ -18,9 +18,9 @@
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
         <!-- Stylesheets-->
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kanit:300,400,500,500i,600,900%7CRoboto:400,900">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/fonts.css">
+        <link rel="stylesheet" href="/css/style.css">
         <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
 	</head>
 	<body>
@@ -98,7 +98,7 @@
                   <div class="col-sm-6">
                           <!-- Post Classic-->
                           <article class="post-classic">
-                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-1-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="/images/footer-soccer-post-1-93x87.jpg" alt="" width="93" height="87"/></a></div>
                             <div class="post-classic-main">
                               <!-- Badge-->
                               <div class="badge badge-secondary">The Team
@@ -113,7 +113,7 @@
                   <div class="col-sm-6">
                           <!-- Post Classic-->
                           <article class="post-classic">
-                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-2-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="/images/footer-soccer-post-2-93x87.jpg" alt="" width="93" height="87"/></a></div>
                             <div class="post-classic-main">
                               <!-- Badge-->
                               <div class="badge badge-red">Hot<span class="icon material-icons-whatshot"></span>
@@ -128,7 +128,7 @@
                   <div class="col-sm-6">
                           <!-- Post Classic-->
                           <article class="post-classic">
-                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-3-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="/images/footer-soccer-post-3-93x87.jpg" alt="" width="93" height="87"/></a></div>
                             <div class="post-classic-main">
                               <!-- Badge-->
                               <div class="badge badge-primary">The League
@@ -143,7 +143,7 @@
                   <div class="col-sm-6">
                           <!-- Post Classic-->
                           <article class="post-classic">
-                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="images/footer-soccer-post-4-93x87.jpg" alt="" width="93" height="87"/></a></div>
+                            <div class="post-classic-aside"><a class="post-classic-figure" href="#"><img src="/images/footer-soccer-post-4-93x87.jpg" alt="" width="93" height="87"/></a></div>
                             <div class="post-classic-main">
                               <!-- Badge-->
                               <div class="badge badge-primary">The League

@@ -12,8 +12,46 @@
 			<link rel="stylesheet" type="text/css" href="/css/skel.css" />
 			<link rel="stylesheet" type="text/css" href="/css/style.css" />
 			<link rel="stylesheet" type="text/css" href="/css/style-desktop.css" />
+			<link rel="stylesheet" type="text/css" href="/css/style11.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+			<script src="/js/skel.min.js"></script>
+		<script src="/js/skel-layers.min.js"></script>
+		<script src="/js/init.js"></script>
+		<script src="/js/moreview.js"></script>
+	<script>
+	$(function () {
+	function loadMoreMatches() {
+		var matches = document.querySelectorAll('#matchSchedule .match-info');
+		for (var i = 3; i < matches.length; i++) {
+			if (matches[i].style.display === 'none') {
+				matches[i].style.display = 'block';
+			}
+		}
+		var hiddenMatches = document.querySelectorAll('#matchSchedule .match-info[style="display:none;"]');
+		if (hiddenMatches.length === 0) {
+			document.getElementById('loadMoreBtn').style.display = 'none';
+		}
+	};
+
+
+	function loadMoreNews() {
+		var news = document.querySelectorAll('#descriptionCon');
+		for (var i = 3; i < news.length; i++) {
+			if (news[i].style.display === 'none') {
+				news[i].style.display = 'block';
+			}
+		}
+		var hiddenNews = document.querySelectorAll('#descriptionCon[style="display:none;"]');
+		if (hiddenNews.length === 0) {
+			document.getElementById('loadMoreNewsBtn').style.display = 'none';
+		}
+	};
+    document.getElementById('loadMoreBtn').addEventListener('click', loadMoreMatches);
+    document.getElementById('loadMoreNewsBtn').addEventListener('click', loadMoreNews);
+
+	})	
+	</script>
 	</head>
 	<body class="subpage">
 
@@ -56,35 +94,21 @@
 												<p>
 													<strong>Round:</strong> ${fn:substringAfter(match.round, 'Regular Season - ')} <br>
 													<strong>League:</strong> ${match.league.name} 
-													<img src="${match.league.logo}" alt="${match.league.name} Logo" class="TeamLogo" />
+													<img src="${match.league.logo}" alt="${match.league.name} Logo" class="TeamLogo" style="max-width: 17% !important;" />
 													<br>
 													<strong>Date:</strong> ${match.event_date} <br>
 													<strong>Place:</strong> ${match.venue} <br>
 													<strong>HomeTeam:</strong> ${match.homeTeam.team_name}   
-													<img src="${match.homeTeam.logo}" alt="${match.homeTeam.team_name} Logo" class="TeamLogo" />
+													<img src="${match.homeTeam.logo}" alt="${match.homeTeam.team_name} Logo" class="TeamLogo"  style="max-width: 17% !important;" />
 													<br>
 													<strong>AwayTeam:</strong> ${match.awayTeam.team_name} 
-													<img src="${match.awayTeam.logo}" alt="${match.awayTeam.team_name} Logo" class="TeamLogo" />
+													<img src="${match.awayTeam.logo}" alt="${match.awayTeam.team_name} Logo" class="TeamLogo"  style="max-width: 17% !important;" />
 													<br>
+													<hr />
 												</p>
 											</div>
 										</c:forEach>
 										<button id="loadMoreBtn" onclick="loadMoreMatches()">Load More</button>
-									</section>
-
-
-									<section>
-										<header>
-											<h2>Magna Phasellus</h2>
-										</header>
-										<ul class="link-list">
-											<li><a href="#">Sed dolore viverra</a></li>
-											<li><a href="#">Ligula non varius</a></li>
-											<li><a href="#">Nec sociis natoque</a></li>
-											<li><a href="#">Penatibus et magnis</a></li>
-											<li><a href="#">Dis parturient montes</a></li>
-											<li><a href="#">Nascetur ridiculus</a></li>
-										</ul>
 									</section>
 							</div>
 							<div class="6u important(collapse)">
@@ -93,8 +117,10 @@
 								<c:forEach items="${soccerList2}" var="teamInfo" varStatus="loop">
 									<section>
 										<header>
+											<img src="${teamInfo.logo}" alt="" class="TeamLogo"  style="max-width: 17% !important;" />
 											<h2>${teamInfo.name}</h2>
 											<h3>Home Stadium : ${teamInfo.venue_name} </h3>
+											${teamInfo}
 										</header>
 										<p>
 											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam metus, congue 
@@ -128,36 +154,29 @@
 
 							</div>
 							<div class="3u">
-								
-								<!-- Right Sidebar -->
-									<section>
+									<header>
+											<h2>
+												SEARCH TIME: <br/>
+												${teamNews.lastBuildDate}
+											</h2>
+									</header>
+									<c:forEach  items="${teamNews.items}" var="teamNews1" varStatus="loop">
+									<section id ="descriptionCon"  style="${loop.index > 2 ? 'display:none;' : ''}" >
 										<header>
-											<h2>Magna Phasellus</h2>
+											<h2>${teamNews1.title}</h2>
 										</header>
-										<ul class="link-list">
-											<li><a href="#">Sed dolore viverra</a></li>
-											<li><a href="#">Ligula non varius</a></li>
-											<li><a href="#">Nec sociis natoque</a></li>
-											<li><a href="#">Penatibus et magnis</a></li>
-											<li><a href="#">Dis parturient montes</a></li>
-											<li><a href="#">Nascetur ridiculus</a></li>
-										</ul>
-									</section>
-									<section>
-										<header>
-											<h2>Ipsum Dolor</h2>
-										</header>
-										<p>
-											Vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat. 							
+										<p >
+											${teamNews1.description}
+											<ul class="link-list">
+												<a href="${teamNews1.link}">
+												link
+												</a>
+											</ul>
 										</p>
-										<ul class="link-list">
-											<li><a href="#">Sed dolore viverra</a></li>
-											<li><a href="#">Ligula non varius</a></li>
-											<li><a href="#">Dis parturient montes</a></li>
-											<li><a href="#">Nascetur ridiculus</a></li>
-										</ul>
 									</section>
+									</c:forEach>
+									<button id="loadMoreNewsBtn" onclick=loadMoreNews >Load More</button>
+
 
 							</div>
 						</div>
@@ -168,8 +187,4 @@
 		<!-- Footer -->
 		   	<%@ include file='../footer.jsp' %>
 	</body>
-		<script src="/js/skel.min.js"></script>
-		<script src="/js/skel-layers.min.js"></script>
-		<script src="/js/init.js"></script>
-		<script src="/js/moreview.js"></script>
 </html>

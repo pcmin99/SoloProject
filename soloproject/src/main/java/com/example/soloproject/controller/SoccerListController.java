@@ -14,6 +14,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,10 +200,35 @@ public class SoccerListController {
             ObjectMapper objectMapper2 = new ObjectMapper();
             SoccerListVO soccerList2 = objectMapper2.readValue(response2.body(), SoccerListVO.class);        
             model.addAttribute("soccerList2", soccerList2.getApi().getTeams());
+            System.out.println("====================================================================");
+
+            // 팀 이름 추출 및 출력
+            List<SoccerListVO.Teams> teams = soccerList2.getApi().getTeams();
+            for (SoccerListVO.Teams team : teams) {
+                System.out.println("Team Name: " + team.getName());
+                String clientId = "VThSYhofsxKXIWAvv9Wx";
+                String clientSecret = "WRmau6BH7U" ; 
+                try {
+                    String teamName = URLEncoder.encode(team.getName(), "UTF-8");
+                    String apiURL = "https://openapi.naver.com/v1/search/news?query=" + teamName;    // JSON 결과
+                    Map<String, String> requestHeaders = new HashMap<>();
+                    requestHeaders.put("X-Naver-Client-Id", clientId);
+                    requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+                    String responseBody = get(apiURL,requestHeaders);    
+                    // JSON 응답을 NewsVO로 변환 후 모델에 추가
+                    NewsVO newsVO = objectMapper.readValue(responseBody, NewsVO.class);
+                    model.addAttribute("teamNews", newsVO);
+                    System.out.println(responseBody);
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException("검색어 인코딩 실패",e);
+                }
+
+
+
+            }
 
         return "posts/threecolumn";   
-        }  
-        else{
+        }  else{
             return "login/login";   
         } 
     }

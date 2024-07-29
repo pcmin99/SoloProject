@@ -1,6 +1,7 @@
 $(function() {
-    $('.game-info-team game-info-team-first').click(function() {
+    $('.game-info-team-first').click(function() {
         const homeTeamId = $(this).find('.homeTeamid').val();
+        console.log(homeTeamId);
         if(homeTeamId == null) {
             window.location.href = "../main";
         } else {
@@ -8,7 +9,7 @@ $(function() {
         }
     });
 
-    $('.game-info-team game-info-team-second').click(function() {
+    $('.game-info-team-second').click(function() {
         const awayTeamId = $(this).find('.awayTeamid').val();
         if(awayTeamId == null) {
             window.location.href = "../main";

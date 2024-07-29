@@ -1,12 +1,21 @@
-function loadMoreMatches() {
-    var matches = document.querySelectorAll('#matchSchedule .match-info');
-    for (var i = 3; i < matches.length; i++) {
-        if (matches[i].style.display === 'none') {
-            matches[i].style.display = 'block';
-        }
+$(function () {
+
+$('#descriptionCon > p').each(function() {
+    var $p = $(this);
+    var text = $p.text(); // 현재 <p> 요소의 텍스트 가져오기
+    var maxLength = 90; // 최대 길이
+
+    if (text.length > maxLength) {
+        text = text.substring(0, maxLength) + "...";
     }
-    var hiddenMatches = document.querySelectorAll('#matchSchedule .match-info[style="display:none;"]');
-    if (hiddenMatches.length === 0) {
-        document.getElementById('loadMoreBtn').style.display = 'none';
-    }
-}
+    $p.text(text);
+});
+
+
+
+
+
+
+
+
+});
