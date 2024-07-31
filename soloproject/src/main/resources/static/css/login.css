@@ -25,6 +25,17 @@ img {
   display: block;
 }
 
+.alert-danger{ 
+  background-color: #FFBBC6;
+  border-radius: 2rem;
+  font-size: -0.062rem ;
+  font-weight: 600;
+  color: rgba(244, 9, 56, 0.5);
+  
+
+
+}
+
 .login {
   display: grid;
   grid-template-columns: 100%;

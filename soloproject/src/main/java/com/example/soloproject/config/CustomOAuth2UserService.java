@@ -2,7 +2,6 @@ package com.example.soloproject.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -40,24 +39,28 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         String provider = userRequest.getClientRegistration().getRegistrationId(); // "google"
         String providerId = oAuth2User.getAttribute("sub");
-        String username = provider + "_" + providerId;
+        String username = oAuth2User.getAttribute("email");
         String email = oAuth2User.getAttribute("email");
-
+    
         Member member = memberRepository.findByUsername(username)
                 .orElseGet(() -> {
                     Member newMember = Member.builder()
                             .username(username)
                             .email(email)
-                            .password(bCryptPasswordEncoder.encode("defaultpassword")) // 기본 비밀번호 제공
+                            .password(bCryptPasswordEncoder.encode("defaultpassword"))
                             .role(Role.USER)
                             .provider(provider)
                             .providerId(providerId)
                             .build();
-                            System.out.println(":::::::::::::::"+newMember);
-                    return memberRepository.save(newMember);
+                    Member savedMember = memberRepository.save(newMember);
+                    System.out.println("Saved Member: " + savedMember);
+                    return savedMember;
                 });
+    
+        System.out.println("Loaded Member: " + member);
         return new CustomOAuth2User(member, oAuth2User.getAttributes());
-    };
+    }
+    
 
 
     

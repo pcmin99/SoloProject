@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -32,9 +33,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.soloproject.domain.NewsVO;
+import com.example.soloproject.domain.PostsVO;
 import com.example.soloproject.domain.SearchResultVO;
 import com.example.soloproject.domain.SoccerListVO;
 import com.example.soloproject.dto.Member.MemberJoinRequestDto;
+import com.example.soloproject.service.PostsService;
 import com.example.soloproject.service.member.MemberService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -51,17 +54,27 @@ public class SoccerListController {
     @Autowired
     private MemberService memberService ;
 
+    @Autowired
+    private PostsService postsService ;
+
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    // @RequestMapping("/{step}")
-    // public String viewPage(@PathVariable String step) {
-    //     return step;
-    // }
+
+
+    @RequestMapping("/{step}")
+    public String viewPage(@PathVariable String step) {
+        return step;
+    }
 
     // 로그인
     @RequestMapping("/login/login")
-    public String loginPage(Model model){
-
+    public String loginPage(User user,HttpSession session,  @RequestParam(value= "error", required = false) String error, 
+                                                            @RequestParam(value= "exception", required = false) String exception,
+                                                            Model model 
+                ){
+        model.addAttribute("error",error);
+        model.addAttribute("exception",exception);
+        session.setAttribute("loggedInUser", user);
         return "login/login" ; 
     }
 
@@ -125,6 +138,7 @@ public class SoccerListController {
         return  ResponseEntity.ok(searchResultVO); 
     }
 
+
     // main 페이지 오픈 api 
     // 프리미어리그 관련한 개발을 하기에 defaultValue = 프리미어리그로 
     @GetMapping("/main")
@@ -141,13 +155,14 @@ public class SoccerListController {
         soccerList = objectMapper.readValue(response.body(), SoccerListVO.class);
         model.addAttribute("soccerList", soccerList.getApi().getFixtures());
 
-        // 세션이 유효한지 확인
+        // 세션에서 사용자 정보를 가져와 모델에 추가
         if (session != null && session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
             SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
             Authentication authentication = securityContext.getAuthentication();
             if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
                 UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-                model.addAttribute("user", userDetails);
+                session.setAttribute("loggedInUser", userDetails);
+                model.addAttribute("loggedInUser", userDetails);
             }
         }
 
@@ -166,13 +181,17 @@ public class SoccerListController {
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
         String responseBody = get(apiURL,requestHeaders);    
-        // JSON 응답을 NewsVO로 변환 후 모델에 추가
         NewsVO newsVO = objectMapper.readValue(responseBody, NewsVO.class);
         model.addAttribute("leagueNews", newsVO);
         System.out.println(responseBody);
 
+        // posts 전체 리스트
+        List<PostsVO> allPosts = postsService.allpost();
+        model.addAttribute("allPosts",allPosts);
+
         return "main" ;
     }
+    
 
     // 사용자가 선택한 A -> A에 대한 정보 ( 데이터 부족으로 오픈 api 2개 추가 )
     @GetMapping("/posts/threecolumn/{teamId}")
@@ -235,7 +254,15 @@ public class SoccerListController {
 
     
     
-    
+    @GetMapping("/posts/boardList")
+    public String boardList(Model model) {
+                // posts 전체 리스트
+                List<PostsVO> allPosts = postsService.allpost();
+                model.addAttribute("allPosts",allPosts);
+
+        return "posts/boardList" ; 
+
+    }
     
     
     

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.soloproject.dao.BoardPostsDAO">
+
+    <!-- 일단 all select -->
+	<select id='postList' resultType="PostsVO">
+    SELECT *
+    FROM posts pos
+        INNER JOIN `member` mem
+        ON pos.user_id = mem.username
+    ORDER BY pos.view DESC
+    </select>
+
+</mapper>

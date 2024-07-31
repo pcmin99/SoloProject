@@ -25,13 +25,19 @@
                     <h1 class="login__title">Sign In</h1>
                     <div class="login__box">
                         <i class='bx bx-user login__icon'></i>
-                        <input type="text" placeholder="Username" name="username" class="login__input">
+                        <input type="text" placeholder="UserId" name="username" class="login__input">
                     </div>
                     <div class="login__box">
                         <i class='bx bx-lock login__icon'></i>
                         <input type="password" placeholder="Password" name="password" class="login__input">
                     </div>
                     <a href="#" class="login__forgot">Forgot Password? </a>
+                    
+                    <span> 
+                        <c:if test="${error}">
+                            <p id="valid" class="alert alert-danger">${exception}</p>
+                        </c:if>
+                    </span>
                     
                     <input type="submit" value="Sign In" class="login__button" />
                     
@@ -46,7 +52,7 @@
                     <h1 class="login__title">Create Account</h1>
                     <div class="login__box">
                         <i class='bx bx-user login__icon'></i>
-                        <input type="text" placeholder="Username" name="username" id="username" class="login__input">
+                        <input type="text" placeholder="UserId" name="username" id="username" class="login__input">
                         <input type="button" value="중복 확인" id="dupiCheck" />
                         <span id="idError" class="validateError"></span>
                     </div>
@@ -69,9 +75,14 @@
                     </div>
                     
                     <div class="login__social">
-                        <a href="#" class="login__social--icon"><i class='bx bxl-google'></i></a>
-                        <a href="#" class="login__social--icon"><i class='bx bxl-github'></i></a>
-                        <a href="#" class="login__social--icon"><i class='bx bxl-facebook'></i></a>
+                        <a href="/oauth2/authorization/google" class="login__social--icon">
+                            <i class='bx bxl-google'>
+                            </i>
+                        </a>
+                        <a href="/oauth2/authorization/facebook" class="login__social--icon">
+                            <i class='bx bxl-facebook'>
+                            </i>
+                        </a>
                     </div>
                 </form>
             </div>

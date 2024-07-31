@@ -1,28 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html class="wide wow-animation" lang="en">
-	<head>
-		<title>Halcyonic by HTML5 UP</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/teamid.js"></script>
-        
-        <meta name="format-detection" content="telephone=no">
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta charset="utf-8">
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-        <!-- Stylesheets-->
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kanit:300,400,500,500i,600,900%7CRoboto:400,900">
-        <link rel="stylesheet" href="/css/bootstrap.css">
-        <link rel="stylesheet" href="/css/fonts.css">
-        <link rel="stylesheet" href="/css/style.css">
-        <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
-	</head>
 	<body>
      <footer class="section footer-classic footer-classic-dark context-dark">
         <div class="footer-classic-main">
@@ -43,7 +20,7 @@
             <div class="row row-50">
               <div class="col-lg-5 text-center text-sm-left">
                 <article class="unit unit-sm-horizontal unit-middle justify-content-center justify-content-sm-start footer-classic-info">
-                  <div class="unit-left"><a class="brand brand-md" href="./"><img class="brand-logo " src="images/logo-soccer-default-95x126.png" alt="" width="95" height="126"/></a>
+                  <div class="unit-left"><a class="brand brand-md" href="./"><img class="brand-logo " src="/images/logo-soccer-default-95x126.png" alt="" width="95" height="126"/></a>
                   </div>
                   <div class="unit-body">
                     <p>Sportland website offers you the latest news about our team as well as updates on our matches and other events.</p>
@@ -167,12 +144,8 @@
               <p class="rights"><span>Sportland</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span><span>.&nbsp;</span><span>Designed by <a href="https://www.templatemonster.com/products/author/zemez/">Zemez.</a></span></p>
               <nav class="nav-minimal">
                 <ul class="nav-minimal-list">
-                  <li class="active"><a href="index.html">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Statistics</a></li>
-                  <li><a href="#">Team</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Shop</a></li>
+                  <li class=""><a  href="/main">Home</a></li>
+                  <li><a href="/posts/boardList">Board</a></li>
                 </ul>
               </nav>
             </div>
@@ -180,14 +153,9 @@
         </div>
       </footer>
 
-
-
-
-
-
     <!-- Javascript-->
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/js/core.min.js"></script>
+    <script src="/js/script.js"></script>
     <!-- SweetAlert JS -->
     <script	script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	</body>

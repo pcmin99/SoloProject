@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style22.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
         <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
@@ -81,92 +85,7 @@
     <!-- Page-->
     <div class="page">
       <!-- Page Header-->
-      <header class="section page-header rd-navbar-dark">
-        <!-- RD Navbar-->
-        <div class="rd-navbar-wrap">
-          <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="166px" data-xl-stick-up-offset="166px" data-xxl-stick-up-offset="166px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
-            <div class="rd-navbar-panel">
-              <!-- RD Navbar Toggle-->
-              <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-main"><span></span></button>
-              <!-- RD Navbar Panel-->
-              <div class="rd-navbar-panel-inner container">
-                <div class="rd-navbar-collapse rd-navbar-panel-item rd-navbar-panel-item-left">
-                  <!-- Owl Carousel-->
-                  <div class="owl-carousel-navbar owl-carousel-inline-outer">
-                    <div class="owl-carousel-inline-wrap">
-                    </div>
-                  </div>
-                </div>
-                <div class="rd-navbar-panel-item rd-navbar-panel-item-right">
-                  <ul class="list-inline list-inline-bordered">
-                    <li>
-                    <c:if test="${not empty user}">
-                    <a class="link link-icon link-icon-left link-classic" href="" onclick="confirmLogout()">
-                    <span class="icon fl-bigmug-line-login12"></span>
-                    <span class="link-icon-text">LOGOUT</span>
-                    <input type="hidden" value="${user}" id="user" />
-                    </a>
-                    </c:if>
-                    <c:if test="${empty user}">
-                    <a class="link link-icon link-icon-left link-classic" href="login/login" id="user">
-                    <span class="icon fl-bigmug-line-login12"></span>
-                    <span class="link-icon-text">LOGIN</span>
-                    </a>
-                    </c:if>
-                    </li>
-                  </ul>
-                </div>
-                <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
-              </div>
-            </div>
-            <div class="rd-navbar-main">
-              <div class="rd-navbar-main-top">
-                <div class="rd-navbar-main-container container">
-                  <!-- RD Navbar Brand-->
-                  <div class="rd-navbar-brand"><a class="brand" href="./"><img class="brand-logo " src="images/logo-soccer-default-95x126.png" alt="" width="95" height="126"/></a>
-                  </div>
-                  <!-- RD Navbar List-->
-                  <ul class="rd-navbar-list">
-                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"><img src="images/partners-1-inverse-75x42.png" alt="" width="75" height="42"/></a></li>
-                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"><img src="images/partners-2-inverse-88x45.png" alt="" width="88" height="45"/></a></li>
-                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"><img src="images/partners-3-inverse-79x52.png" alt="" width="79" height="52"/></a></li>
-                  </ul>
-                  <!-- RD Navbar Search-->
-                  <div class="rd-navbar-search">
-                    <button class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
-                    <form class="rd-search" action="" data-search-live="rd-search-results-live" method="">
-                      <div class="form-wrap">
-                        <label class="form-label" for="rd-navbar-search-form-input">Team Search..</label>
-                        <input class="rd-navbar-search-form-input form-input" id="rd-navbar-search-form-input" type="text" name="searchImg" autocomplete="off" id="searchImg" value="" >
-                        <div class="rd-search-results-live" id="rd-search-results-live"></div>
-                      </div>
-                      <button class="rd-search-form-submit fl-budicons-launch-search81" type="submit"></button>
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-              <div class="rd-navbar-main-bottom rd-navbar-darker">
-                <div class="rd-navbar-main-container container">
-                  <!-- RD Navbar Nav-->
-                                    <ul class="rd-navbar-nav">
-                                      <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Home</a>
-                                      </li>
-                                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">Game overview</a>
-                                      </li>
-                                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">Typography</a>
-                                      </li>
-                                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">Contact us</a>
-                                      </li>
-                                    </ul>
-                  <div class="rd-navbar-main-element">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
+    <%@ include file='header.jsp' %>
       <!-- Latest News-->
       <section class="section section-md bg-gray-100">
         <div class="container">
@@ -266,113 +185,57 @@
                                       </c:forEach>
                 </div>
                 <div class="aside-component">
+                
                   <div class="owl-carousel-outer-navigation">
                     <!-- Heading Component-->
                     <article class="heading-component">
                       <div class="heading-component-inner">
-                        <h5 class="heading-component-title">NEWS
+                        <h5 class="heading-component-title">COMMU
                         </h5>
-                        <div class="owl-carousel-arrows-outline">
-                          <div class="owl-nav">
-                            <button class="owl-arrow owl-arrow-prev"></button>
-                            <button class="owl-arrow owl-arrow-next"></button>
-                          </div>
-                        </div>
                       </div>
                     </article>
                     <!-- Owl Carousel-->
                     <div class="owl-carousel owl-spacing-1" data-items="1" data-dots="false" data-nav="true" data-autoplay="true" data-autoplay-speed="4000" data-stage-padding="0" data-loop="false" data-margin="30" data-mouse-drag="false" data-nav-custom=".owl-carousel-outer-navigation">
-                      <article class="product">
-                        <header class="product-header">
-                          <!-- Badge-->
-                          <div class="product-figure"><img src="images/shop/product-1.png" alt=""/></div>
-                          <div class="product-buttons">
-                            <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
-                              <ul class="product-share">
-                                <li class="product-share-item"><span>Share</span></li>
-                                <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
-                              </ul>
-                            </div><a class="product-button fl-bigmug-line-shopping202" href="#" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-1-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
+                    	<section class="ftco-section">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="table-wrap">
+                              <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th>View</th>
+                                    <th>User ID</th>
+                                    <th></th>
+                                    <th>Email</th>
+                                    <th>Title </th>
+                                    <th>Id No. </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <c:forEach items="${allPosts}" var="allPosts" >
+                                  <tr class="alert" role="alert">
+                                    <td>${allPosts.view}</td>
+                                    <td class="user_idHidden">${allPosts.user_id}</td>
+                                    <td>
+                                      <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"  id="close123" style="display:none;" >
+                                          <i class="fa fa-close"></i>
+                                        </span>
+                                      </a>
+                                    </td>
+                                    <td>${allPosts.email}</td>
+                                    <td>${allPosts.title}</td>
+                                    <th scope="row">${allPosts.id}</th>
+                                  </tr>
+                                  </c:forEach >
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
-                        </header>
-                        <footer class="product-content">
-                          <h6 class="product-title"><a href="#">Nike hoops elite backpack</a></h6>
-                          <div class="product-price"><span class="product-price-old">$400</span><span class="heading-6 product-price-new">$290</span>
-                          </div>
-                          <ul class="product-rating">
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star_half"></span></li>
-                          </ul>
-                        </footer>
-                      </article>
-                      <article class="product">
-                        <header class="product-header">
-                          <!-- Badge-->
-                          <div class="badge badge-shop">new
-                          </div>
-                          <div class="product-figure"><img src="images/shop/product-2.png" alt=""/></div>
-                          <div class="product-buttons">
-                            <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
-                              <ul class="product-share">
-                                <li class="product-share-item"><span>Share</span></li>
-                                <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
-                              </ul>
-                            </div><a class="product-button fl-bigmug-line-shopping202" href="#" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-2-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
-                          </div>
-                        </header>
-                        <footer class="product-content">
-                          <h6 class="product-title"><a href="#">Nike Air Zoom Pegasus</a></h6>
-                          <div class="product-price"><span class="heading-6 product-price-new">$290</span>
-                          </div>
-                          <ul class="product-rating">
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star_half"></span></li>
-                          </ul>
-                        </footer>
-                      </article>
-                      <article class="product">
-                        <header class="product-header">
-                          <!-- Badge-->
-                          <div class="badge badge-red">hot<span class="icon material-icons-whatshot"></span>
-                          </div>
-                          <div class="product-figure"><img src="images/shop/product-3.png" alt=""/></div>
-                          <div class="product-buttons">
-                            <div class="product-button product-button-share fl-bigmug-line-share27" style="font-size: 22px">
-                              <ul class="product-share">
-                                <li class="product-share-item"><span>Share</span></li>
-                                <li class="product-share-item"><a class="icon fa fa-facebook" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-instagram" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-twitter" href="#"></a></li>
-                                <li class="product-share-item"><a class="icon fa fa-google-plus" href="#"></a></li>
-                              </ul>
-                            </div><a class="product-button fl-bigmug-line-shopping202" href="#" style="font-size: 26px"></a><a class="product-button fl-bigmug-line-zoom60" href="images/shop/product-3-original.jpg" data-lightgallery="item" style="font-size: 25px"></a>
-                          </div>
-                        </header>
-                        <footer class="product-content">
-                          <h6 class="product-title"><a href="#">Nike distressed baseball hat</a></h6>
-                          <div class="product-price"><span class="product-price-old">$400</span><span class="heading-6 product-price-new">$290</span>
-                          </div>
-                          <ul class="product-rating">
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star"></span></li>
-                            <li><span class="material-icons-star_half"></span></li>
-                          </ul>
-                        </footer>
-                      </article>
+                        </div>
+                      </div>
+                    </section>
                     </div>
                   </div>
                 </div>

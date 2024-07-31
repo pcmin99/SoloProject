@@ -34,6 +34,7 @@
 	a
 	{
 		text-decoration: underline;
+		text-decoration-line: none;
 	}
 	
 	a:hover

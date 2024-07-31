@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.example.soloproject.domain.member.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Getter;
@@ -31,6 +31,8 @@ public class SecurityConfig {
     private final MyUserDetailsService myUserDetailsService ; 
 
     private final CustomOAuth2UserService customOAuth2UserService;
+
+    private final AuthenticationFailureHandler userLoginFailHandler;
 
     // db에 사용자, 관리자 비밀번호 랜덤텍스트로 저장 
     @Bean
@@ -55,19 +57,21 @@ public class SecurityConfig {
                                 .requestMatchers("/js/**","/css/**","/images/**","/fonts/**","/favicon.ico").permitAll() // js 전체 권한 
                                 .requestMatchers("/WEB-INF/views/main.jsp","/main/**").permitAll() // main 페이지
                                 .requestMatchers("/WEB-INF/views/footer/**","/footer/**").permitAll() // footer 페이지
-                                .requestMatchers("/posts/**", "/WEB-INF/views/posts/**").hasRole(Role.USER.name()) // 사용자 권한이 필요한 url
-                                .requestMatchers("/admins/**", "/api/v1/admins/**").hasRole(Role.ADMIN.name()) // 관리자 권한이 필요한 url
+                                .requestMatchers("/WEB-INF/views/header/**","/header/**").permitAll() // header 페이지
+                                .requestMatchers("/posts/**", "/WEB-INF/views/posts/**").hasRole("USER") // 사용자 권한이 필요한 url
+                                .requestMatchers("/admins/**", "/api/v1/admins/**").hasRole("ADMIN") // 관리자 권한이 필요한 url
                                 .anyRequest().authenticated() // 그외의 모든 요청은 인증 권한 필요
                 )// 3번
-                .exceptionHandling((exceptionConfig) ->
-                        exceptionConfig.authenticationEntryPoint(unauthorizedEntryPoint).accessDeniedHandler(accessDeniedHandler)
-                ) // 401 403 관련 예외처리 -> json 형식의 오류 응답을 설정
+                // .exceptionHandling((exceptionConfig) ->
+                //         exceptionConfig.authenticationEntryPoint(unauthorizedEntryPoint).accessDeniedHandler(accessDeniedHandler)
+                // ) // 401 403 관련 예외처리 -> json 형식의 오류 응답을 설정
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login") // 1번 -> 사용자 정의 로그인 페이지 
                                 .usernameParameter("username") // 2번-> 로그인시 사용자 이름 파라미터 
                                 .passwordParameter("password") // 3번-> 로그인시 사용자 패스워드 파라미터 
                                 .loginProcessingUrl("/loginonlyLogin") // 4번 로그인 폼 처리 url
+                                .failureHandler(userLoginFailHandler) // 로그인 실패 핸들러
                                 .defaultSuccessUrl("/main", true) // 5번 로그인 성공시 갈 url
                 ).oauth2Login(oauth2  ->
                 oauth2
@@ -96,28 +100,26 @@ public class SecurityConfig {
     // oauth2/authorization/{provider} 형식의 URL을 사용
     // 스프링 시큐리티에서 로그아웃시 자동 세션 삭제 이지만 소셜 로그인시 자동 로그인이 계속 되는 문제 때문에 .invalidate~~ 설정
 
-        public final AuthenticationEntryPoint unauthorizedEntryPoint =
-            (request,response, authException) -> {
-                ErrorResponse fail = new ErrorResponse(HttpStatus.UNAUTHORIZED, "Spring security unauthorized...");
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                String json = new ObjectMapper().writeValueAsString(fail);
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                PrintWriter writer = response.getWriter();
-                writer.write(json);
-                writer.flush();
-            };
-
-        public  final AccessDeniedHandler accessDeniedHandler =
-            (request, response, accessDeniedException) -> {
-                ErrorResponse fail = new ErrorResponse(HttpStatus.FORBIDDEN, "Spring security forbidden...");
-                response.setStatus(HttpStatus.FORBIDDEN.value());
-                String json = new ObjectMapper().writeValueAsString(fail);
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                PrintWriter writer = response.getWriter();
-                writer.write(json);
-                writer.flush();
-            };
-
+        public final AuthenticationEntryPoint unauthorizedEntryPoint = (request, response, authException) -> {
+            ErrorResponse fail = new ErrorResponse(HttpStatus.UNAUTHORIZED, "Spring security unauthorized...");
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            String json = new ObjectMapper().writeValueAsString(fail);
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            PrintWriter writer = response.getWriter();
+            writer.write(json);
+            writer.flush();
+        };
+        
+        public final AccessDeniedHandler accessDeniedHandler = (request, response, accessDeniedException) -> {
+            ErrorResponse fail = new ErrorResponse(HttpStatus.FORBIDDEN, "Spring security forbidden...");
+            response.setStatus(HttpStatus.FORBIDDEN.value());
+            String json = new ObjectMapper().writeValueAsString(fail);
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            PrintWriter writer = response.getWriter();
+            writer.write(json);
+            writer.flush();
+        };
+        
 
         
 
