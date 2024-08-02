@@ -18,9 +18,53 @@ $(function() {
         }
     });
 
-    const userHidden = $('.userInfoId1').val();
-    const user_idHidden = $('.user_idHidden');
+
+
+    $('.close123').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = $(this).find('.postDetailIdX').val();
+        $.ajax({
+            type: "POST",
+            url: "/boardList/"+id,
+            data: { id: id},
+            success: function(){
+                swal("", "삭제 완료 됬습니다.", "success");
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500);
+            },
+            error: function(){
+                swal("", "에러가 발생했습니다.", "error");
+                setTimeout(function() {
+                    window.location.href = "../posts/boardList";
+                }, 1500);
+
+            }
+        });
+    });
+
     
+    $('.alert').click(function() {
+        const id = $(this).find('#postDetailId').text();
+        if(id == null) {
+            window.location.href = "../posts/boardList";
+        } else {
+            window.location.href = "../posts/postDetail/" + id;
+        }
+    });
+
+    //event.preventDefault();
+
+
+
+
+
+
+
+
+    const userHidden = $('.userInfoId').val();
+    const user_idHidden = $('.user_idHidden');
 
     // 일반 로그인시
     const usernameOrgi = userHidden.match(/Username=([^,]+)/);

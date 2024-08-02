@@ -168,7 +168,7 @@
                   <!-- Heading Component-->
                   <article class="heading-component">
                     <div class="heading-component-inner">
-                      <h5 class="heading-component-title">In the spotlight</h5>
+                      <h5 class="heading-component-title">NEWS</h5>
                       <button class="button button-xs button-gray-outline" id="loadMoreNewsBtn" onclick="loadMoreNews()">All news</button>
                     </div>
                   </article>

@@ -42,35 +42,37 @@
        <section class="section section-md bg-gray-100">
                     <section class="ftco-section">
                       <div class="container">
+                      <a href="/posts/postInsert" class="button button-xs button-gray-outline" id="">INSERT POST</a>
                         <div class="row">
                           <div class="col-md-12">
                             <div class="table-wrap">
                               <table class="table">
                                 <thead class="thead-dark">
                                   <tr>
-                                    <th>View</th>
+                                    <th>Id No.</th>
                                     <th>User ID</th>
-                                    <th></th>
                                     <th>Email</th>
                                     <th>Title </th>
-                                    <th>Id No. </th>
+                                    <th>View </th>
+                                    <th></th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <c:forEach items="${allPosts}" var="allPosts" >
-                                  <tr class="alert" role="alert">
-                                    <td>${allPosts.view}</td>
-                                    <td class="user_idHidden">${allPosts.user_id}</td>
+                                  <c:forEach items="${postListId}" var="postListId" >
+                                  <tr class="alert" role="alert" id="postDetail">
+                                    <th scope="row" id ="postDetailId">${postListId.id}</th>
+                                    <td class="user_idHidden">${postListId.user_id}</td>
+                                    <td>${postListId.email}</td>
+                                    <td>${postListId.title}</td>
+                                    <td>${postListId.view}</td>
                                     <td>
-                                      <a href="#" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"  id="close123" style="display:none;" >
-                                          <i class="fa fa-close"></i>
-                                        </span>
-                                      </a>
+                                        <a href="" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true"  id="close123" style="display:none;" class="close123" >
+                                            <i class="fa fa-close"></i>
+                                            <input type="hidden" value="${postListId.id}" class="postDetailIdX" />
+                                          </span>
+                                        </a>
                                     </td>
-                                    <td>${allPosts.email}</td>
-                                    <td>${allPosts.title}</td>
-                                    <th scope="row">${allPosts.id}</th>
                                   </tr>
                                   </c:forEach >
                                 </tbody>
@@ -90,6 +92,7 @@
     <!-- Javascript-->
     <script src="/js/core.min.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/teamid.js"></script>
     <!-- SweetAlert JS -->
     <script	script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>

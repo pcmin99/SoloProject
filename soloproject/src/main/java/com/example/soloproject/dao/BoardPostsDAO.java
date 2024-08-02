@@ -9,6 +9,17 @@ import com.example.soloproject.domain.PostsVO;
 @Mapper
 public interface  BoardPostsDAO {
 
+    // main page List
     public List<PostsVO> postList() ;
-    
+
+    // boardList page 
+    public List<PostsVO> postListId(); 
+
+    public  PostsVO postDetail(PostsVO postvo);
+
+    public int deletePost(PostsVO postvo) ; 
+
+    // post insert 
+    public void postInsert(PostsVO postvo);
+
 }

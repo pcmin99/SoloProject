@@ -3,13 +3,43 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.soloproject.dao.BoardPostsDAO">
 
-    <!-- 일단 all select -->
+    <!-- main page select posts -->
 	<select id='postList' resultType="PostsVO">
-    SELECT *
-    FROM posts pos
-        INNER JOIN `member` mem
-        ON pos.user_id = mem.username
-    ORDER BY pos.view DESC
+        SELECT *
+        FROM posts pos
+            INNER JOIN `member` mem
+            ON pos.user_id = mem.username
+        ORDER BY pos.view DESC
     </select>
+
+
+
+    <select id='postListId' resultType="PostsVO">
+        SELECT *
+        FROM posts pos
+            INNER JOIN `member` mem
+            ON pos.user_id = mem.username
+        ORDER BY pos.id DESC
+    </select>
+    
+    <select id='postDetail' parameterType= "Int"  resultType="PostsVO">
+        select *
+        from posts pos
+        where id = #{id}
+    </select>
+
+    <delete id = 'deletePost' parameterType="PostsVO">
+        delete 
+        from posts
+        where id = #{id}
+    </delete>
+
+    <insert id="postInsert"  parameterType="PostsVO" > 
+        INSERT INTO posts (content,title,user_id)
+        value ( #{content},#{title},#{user_id})
+    
+    
+    </insert>
+    
 
 </mapper>

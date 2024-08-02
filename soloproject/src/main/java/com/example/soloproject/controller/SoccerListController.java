@@ -1,6 +1,7 @@
 package com.example.soloproject.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,6 +14,9 @@ import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,14 +35,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.soloproject.domain.ImgVO;
 import com.example.soloproject.domain.NewsVO;
 import com.example.soloproject.domain.PostsVO;
 import com.example.soloproject.domain.SearchResultVO;
 import com.example.soloproject.domain.SoccerListVO;
 import com.example.soloproject.dto.Member.MemberJoinRequestDto;
+import com.example.soloproject.service.ImgService;
 import com.example.soloproject.service.PostsService;
 import com.example.soloproject.service.member.MemberService;
+import com.example.soloproject.util.MD5Generator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,8 +62,14 @@ public class SoccerListController {
     @Autowired
     private MemberService memberService ;
 
+    // 게시물 service
     @Autowired
     private PostsService postsService ;
+
+    @Autowired
+    private ImgService imgService ;
+
+
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -253,32 +267,116 @@ public class SoccerListController {
     }
 
     
-    
+    // posts boardList page -> allSelect 
     @GetMapping("/posts/boardList")
     public String boardList(Model model) {
-                // posts 전체 리스트
-                List<PostsVO> allPosts = postsService.allpost();
-                model.addAttribute("allPosts",allPosts);
+                List<PostsVO> postListId = postsService.postListId();
+                model.addAttribute("postListId",postListId);
 
         return "posts/boardList" ; 
 
     }
+
+    // id = posts id
+    @GetMapping("/posts/postDetail/{id}")
+    public String postDetail(Model model, @PathVariable("id") int id) {
+        PostsVO postvo = new PostsVO();
+        postvo.setId(id);
+        PostsVO result = postsService.postDetail(postvo);
+        model.addAttribute("post", result);  
+        return "posts/postDetail";  // 뷰 이름 반환
+    }    
+    
+    // boardList page 삭제 버튼
+    @PostMapping("/boardList/{id}")
+    public ResponseEntity<Void> deletePost(@PathVariable int id) {
+        System.out.println("::::::::::::::::::::::"+id);
+        PostsVO postvo = new PostsVO() ; 
+        postvo.setId(id);
+        postsService.deletePost(postvo) ;
+        return ResponseEntity.noContent().build() ; 
+    }
+
+    // 값 넣을때 세션 값 같이 
+    @GetMapping("/posts/postInsert")
+    public String postInsert1() {
+
+        return "posts/postInsert";
+    }
     
     
-    
-    // 오픈 api 예제 
-    // @RequestMapping("/main1")
-    // public void teamDetail11( Model model) throws IOException, InterruptedException {
-    // HttpRequest request = HttpRequest.newBuilder()
-	// 	.uri(URI.create("https://api-football-v1.p.rapidapi.com/v2/odds/bookmakers/"))
-	// 	.header("x-rapidapi-key", "6e1b55783bmsh96a786c871fd0d6p1660d6jsn4ac2f3db547f")
-	// 	.header("x-rapidapi-host", "api-football-v1.p.rapidapi.com")
-	// 	.method("GET", HttpRequest.BodyPublishers.noBody())
-	// 	.build();
-    //     HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-    // }
 
 
+    @PostMapping("/posts/postInsertForm")
+	public String postInsert(@RequestParam(name = "file", required = false) MultipartFile file, PostsVO postvo) {
+		try {
+            String defaultProfileImagePath = "static/images/6c757d.jpg";
+            // 파일첨부가 있는 경우
+            if( file != null && !file.isEmpty() ){
+                String imgfile_name = file.getOriginalFilename();
+                System.out.println("originFilename : " + imgfile_name);
+                String imgfile_real_name = new MD5Generator(imgfile_name).toString();
+                // => static 폴더 밑으로 이동해야 사용자가 그 파일에 접근 가능
+                String save_path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+                if( !new File(save_path).exists() ){
+                    new File(save_path).mkdir();
+                } 
+                String img_path = save_path + "\\" + imgfile_real_name;
+                System.out.println("filepath : " + img_path);
+
+                // 파일저장
+                file.transferTo(new File(img_path));
+                // 디비저장 시 파일정보 덩어리 추가
+				postsService.postInsert(postvo);
+				System.out.println("postsService.postInsert() 요청");
+
+
+                
+                // 디비저장을 위해서 파일정보 덩어리 만들기
+                ImgVO ivo = new ImgVO();
+				ivo.setImgfile_name(imgfile_name);
+                ivo.setImgfile_real_name(imgfile_real_name);
+                ivo.setImg_path(img_path);
+                ivo.setPosts_id(imgService.selectNum());
+                System.out.println("<<<<< 파일정보 덩어리 만들기 성공 >>>>>");
+                System.out.println(ivo);
+                imgService.postInsertImg(ivo);
+                System.out.println("imgService.postInsertImg() 요청");
+
+            }else {
+                
+                // 파일첨부가 없는 경우
+                // 기본 이미지를 업로드할 수 있도록 경로 설정
+                String defaultImg_real_name = new MD5Generator(defaultProfileImagePath).toString();
+                String save_path = System.getProperty("user.dir") + "\\src\\main\\resources\\";
+                String img_path = save_path + defaultProfileImagePath;
+                System.out.println("img_path : " + img_path);
+
+                // 기본 이미지 저장
+                InputStream defaultImageStream = getClass().getClassLoader().getResourceAsStream(defaultProfileImagePath);
+                Files.copy(defaultImageStream, Paths.get(img_path), StandardCopyOption.REPLACE_EXISTING);
+
+                // 디비저장 시 파일정보 덩어리 추가
+                postsService.postInsert(postvo);
+
+
+                // 디비저장을 위해
+                ImgVO ivo = new ImgVO();
+                ivo.setImgfile_name("6c757d.png");
+                ivo.setImgfile_real_name(defaultImg_real_name);
+                ivo.setImg_path(img_path);
+                ivo.setPosts_id(imgService.selectNum());
+                imgService.postInsertImg(ivo);
+    
+            }
+			return "redirect:/posts/boardList";
+        }catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("파일업로드 실패 : " + ex.getMessage());
+            return "main"; // 실패 시 처리할 페이지로 리다이렉트
+        }
+		
+	}
 
     // // 네이버 뉴스 api 
     private static String get(String apiUrl, Map<String, String> requestHeaders){

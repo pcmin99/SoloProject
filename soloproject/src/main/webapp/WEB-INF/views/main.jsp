@@ -184,14 +184,15 @@
                                       </article>
                                       </c:forEach>
                 </div>
+                <br/>
                 <div class="aside-component">
                 
                   <div class="owl-carousel-outer-navigation">
                     <!-- Heading Component-->
                     <article class="heading-component">
                       <div class="heading-component-inner">
-                        <h5 class="heading-component-title">COMMU
-                        </h5>
+                        <h5 class="heading-component-title">COMMU</h5>
+                        <a href="posts/postInsert" class="button button-xs button-gray-outline" id="">INSERT POST</a>
                       </div>
                     </article>
                     <!-- Owl Carousel-->
@@ -214,19 +215,20 @@
                                 </thead>
                                 <tbody>
                                   <c:forEach items="${allPosts}" var="allPosts" >
-                                  <tr class="alert" role="alert">
+                                  <tr class="alert" role="alert"  id="postDetail">
                                     <td>${allPosts.view}</td>
                                     <td class="user_idHidden">${allPosts.user_id}</td>
                                     <td>
-                                      <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                                      <a href="" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true"  id="close123" style="display:none;" >
                                           <i class="fa fa-close"></i>
+                                             <input type="hidden" value="${postListId.id}" class="postDetailIdX" />
                                         </span>
                                       </a>
                                     </td>
                                     <td>${allPosts.email}</td>
                                     <td>${allPosts.title}</td>
-                                    <th scope="row">${allPosts.id}</th>
+                                    <th scope="row" id ="postDetailId">${allPosts.id}</th>
                                   </tr>
                                   </c:forEach >
                                 </tbody>
