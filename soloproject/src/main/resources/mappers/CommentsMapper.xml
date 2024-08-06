@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.soloproject.dao.ComDAO">
+
+    <delete id = 'deleteComment' parameterType="CommentsVO">
+        delete 
+        from comments
+        where id = #{comsid}
+    </delete>
+
+    <insert id='insertComment'>
+        insert into comments (comment,posts_id ,user_id,created_date)
+        value (#{comment},#{posts_id},#{user_id}, now())
+    
+    </insert>
+
+    <delete id = 'deletePostsid' parameterType="CommentsVO">
+        delete 
+        from comments 
+        where posts_id = #{posts_id}
+    </delete>
+
+
+</mapper>

@@ -36,13 +36,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.soloproject.domain.CommentsVO;
 import com.example.soloproject.domain.ImgVO;
 import com.example.soloproject.domain.NewsVO;
 import com.example.soloproject.domain.PostsVO;
 import com.example.soloproject.domain.SearchResultVO;
 import com.example.soloproject.domain.SoccerListVO;
 import com.example.soloproject.dto.Member.MemberJoinRequestDto;
+import com.example.soloproject.service.CommentsService;
 import com.example.soloproject.service.ImgService;
 import com.example.soloproject.service.PostsService;
 import com.example.soloproject.service.member.MemberService;
@@ -69,6 +72,8 @@ public class SoccerListController {
     @Autowired
     private ImgService imgService ;
 
+    @Autowired
+    private CommentsService commentsService ; 
 
 
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -199,7 +204,7 @@ public class SoccerListController {
         model.addAttribute("leagueNews", newsVO);
         System.out.println(responseBody);
 
-        // posts 전체 리스트
+        // posts main 리스트
         List<PostsVO> allPosts = postsService.allpost();
         model.addAttribute("allPosts",allPosts);
 
@@ -272,7 +277,7 @@ public class SoccerListController {
     public String boardList(Model model) {
                 List<PostsVO> postListId = postsService.postListId();
                 model.addAttribute("postListId",postListId);
-
+                
         return "posts/boardList" ; 
 
     }
@@ -280,30 +285,76 @@ public class SoccerListController {
     // id = posts id
     @GetMapping("/posts/postDetail/{id}")
     public String postDetail(Model model, @PathVariable("id") int id) {
+        
         PostsVO postvo = new PostsVO();
         postvo.setId(id);
-        PostsVO result = postsService.postDetail(postvo);
-        model.addAttribute("post", result);  
+        postsService.clickPosts(postvo);
+
+        CommentsVO commentsvo = new CommentsVO();
+        commentsvo.setId(id);
+        PostsVO result = postsService.postDetail(postvo);  
+        
+        List<CommentsVO> result1 = postsService.comment(commentsvo); 
+        
+        model.addAttribute("post", result);
+        model.addAttribute("comments", result1);
+          
         return "posts/postDetail";  // 뷰 이름 반환
-    }    
+    };
     
-    // boardList page 삭제 버튼
+    // 댓글 입력
+    @PostMapping("/posts/insertComments")
+    public String insertComment(@RequestParam("comment") String comment,
+                                @RequestParam("posts_id") int posts_id,
+                                @RequestParam("user_id") String user_id,
+                                RedirectAttributes redirectAttributes
+                                ){
+        CommentsVO commentsVO = new CommentsVO() ; 
+        commentsVO.setPosts_id(posts_id);
+        commentsVO.setUser_id(user_id);
+        commentsVO.setComment(comment);
+        commentsService.insertComment(commentsVO);
+        redirectAttributes.addAttribute("posts_id", posts_id);
+        return "redirect:/posts/postDetail/{posts_id}";
+    };
+    
+    // boardList page 삭제 버튼 delte
+    // 사용자가 쓴 글 지우는데 댓글 단 사용자와 상관없이 전체 삭제
+    // imgfile 먼저 지우고 -> posts 지우기 
+    // mysql-> 멀티 delete 안됌
     @PostMapping("/boardList/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable int id) {
-        System.out.println("::::::::::::::::::::::"+id);
-        PostsVO postvo = new PostsVO() ; 
+        PostsVO postvo = new PostsVO() ;
+        ImgVO imgvo = new ImgVO() ;
+        CommentsVO commentsVO = new CommentsVO(); 
+
+        imgvo.setPosts_id(id); 
         postvo.setId(id);
+        commentsVO.setPosts_id(id);
+        commentsService.deletePostsid(commentsVO);
+        imgService.deletePostsid(imgvo) ; 
         postsService.deletePost(postvo) ;
         return ResponseEntity.noContent().build() ; 
     }
 
-    // 값 넣을때 세션 값 같이 
+    // 댓글 삭제 
+    @PostMapping("/postDetail/{comsid}")
+    public ResponseEntity<Void> deleteCommid(@PathVariable int comsid) {
+
+        CommentsVO comentsvo = new CommentsVO() ;
+        comentsvo.setComsid(comsid);
+
+        commentsService.deleteComment(comentsvo);
+        return ResponseEntity.noContent().build() ; 
+    }
+
+
+
     @GetMapping("/posts/postInsert")
     public String postInsert1() {
 
         return "posts/postInsert";
     }
-    
     
 
 
@@ -321,7 +372,7 @@ public class SoccerListController {
                 if( !new File(save_path).exists() ){
                     new File(save_path).mkdir();
                 } 
-                String img_path = save_path + "\\" + imgfile_real_name;
+                String img_path = save_path + "\\" + imgfile_name;
                 System.out.println("filepath : " + img_path);
 
                 // 파일저장
@@ -329,7 +380,7 @@ public class SoccerListController {
                 // 디비저장 시 파일정보 덩어리 추가
 				postsService.postInsert(postvo);
 				System.out.println("postsService.postInsert() 요청");
-
+                
 
                 
                 // 디비저장을 위해서 파일정보 덩어리 만들기
@@ -339,7 +390,6 @@ public class SoccerListController {
                 ivo.setImg_path(img_path);
                 ivo.setPosts_id(imgService.selectNum());
                 System.out.println("<<<<< 파일정보 덩어리 만들기 성공 >>>>>");
-                System.out.println(ivo);
                 imgService.postInsertImg(ivo);
                 System.out.println("imgService.postInsertImg() 요청");
 
@@ -358,11 +408,11 @@ public class SoccerListController {
 
                 // 디비저장 시 파일정보 덩어리 추가
                 postsService.postInsert(postvo);
-
+                
 
                 // 디비저장을 위해
                 ImgVO ivo = new ImgVO();
-                ivo.setImgfile_name("6c757d.png");
+                ivo.setImgfile_name("6c757d.jpg");
                 ivo.setImgfile_real_name(defaultImg_real_name);
                 ivo.setImg_path(img_path);
                 ivo.setPosts_id(imgService.selectNum());

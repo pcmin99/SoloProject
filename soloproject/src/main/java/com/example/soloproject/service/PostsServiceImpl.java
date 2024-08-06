@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.soloproject.dao.BoardPostsDAO;
-import com.example.soloproject.dao.ImgDAO;
-import com.example.soloproject.domain.ImgVO;
+import com.example.soloproject.domain.CommentsVO;
 import com.example.soloproject.domain.PostsVO;
 
 @Service
@@ -16,8 +15,6 @@ public class PostsServiceImpl implements PostsService {
     @Autowired
     private BoardPostsDAO boardPostsDAO ; 
 
-    @Autowired
-    private ImgDAO imgDAO ; 
 
 
         // post 전체 리스트
@@ -47,5 +44,20 @@ public class PostsServiceImpl implements PostsService {
         
         }
 
-    
+        // 조회수
+        public int clickPosts(PostsVO postsvo) {
+            int result = boardPostsDAO.clickPosts(postsvo);
+
+            return result ;
+        }
+
+
+        
+        public List<CommentsVO> comment(CommentsVO commentsvo ) {
+            List<CommentsVO> comment = boardPostsDAO.comment(commentsvo);
+            System.out.println(":::::::::::::::::::::");
+            System.out.println(comment);
+            return comment;
+        
+        }
 }

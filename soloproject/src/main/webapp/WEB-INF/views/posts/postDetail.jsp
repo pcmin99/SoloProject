@@ -20,16 +20,83 @@
     <link rel="stylesheet" href="/css/style22.css">
     <link rel="stylesheet" href="/css/style2322.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-        <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+    <style>
+      .ie-panel {
+        display: none;
+        background: #212121;
+        padding: 10px 0;
+        box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+        clear: both;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      html.ie-10 .ie-panel,
+      html.lt-ie-10 .ie-panel {
+        display: block;
+      }
+
+      .comment-section {
+        margin-top: 20px;
+      }
+
+      .comment-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .comment-author {
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .comment-date {
+        display: inline-block;
+        color: #888;
+        margin-right: 10px;
+      }
+
+      .comment-content {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+        margin-top: 10px;
+      }
+
+      .comment-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .comment-actions {
+        margin-top: 5px;
+      }
+
+      .comment-actions button {
+        border: none;
+        background: none;
+        color: #007bff;
+        cursor: pointer;
+      }
+
+      .comment-actions button:hover {
+        text-decoration: underline;
+      }
+    </style>
   
     <script src="/js/jquery.min.js"></script>
   </head>
   <body>
-    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="../images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
       <div class="preloader">
         <div class="preloader-body">
           <div class="preloader-item"></div>
@@ -41,73 +108,75 @@
      <input type="hidden" value="${loggedInUser}" id="loggedInUser" class="userInfoId" />
       <%@ include file='../header.jsp' %>
 
-              <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- Post content-->
-                    <article>
-                        <!-- Post header-->
-                        <header class="mb-4">
-                            <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">${post.title}</h1>
-                            <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">ID : ${post.user_id}</div>
-                            <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">조회수 : ${post.view}</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">${post.id}</a>
-                        </header>
-                        <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
-                        <!-- Post content-->
-                        <section class="mb-5">
-                            <p class="fs-5 mb-4">${post.content}</p>
-                        </section>
-                    </article>
-                    <!-- Comments section-->
-                    <section class="mb-5">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <!-- Comment form-->
-                                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
-                                <!-- Comment with nested comments-->
-                                <div class="d-flex mb-4">
-                                    <!-- Parent comment-->
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                        <!-- Child comment 1-->
-                                        <div class="d-flex mt-4">
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">Commenter Name</div>
-                                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                            </div>
-                                        </div>
-                                        <!-- Child comment 2-->
-                                        <div class="d-flex mt-4">
-                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                            <div class="ms-3">
-                                                <div class="fw-bold">Commenter Name</div>
-                                                When you put money directly to a problem, it makes a good headline.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single comment-->
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
-                                    </div>
-                                </div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+              <!-- Post header-->
+              <header class="mb-4">
+                <!-- Post title-->
+                <h1 class="fw-bolder mb-1">${post.title}</h1>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">ID : ${post.user_id}</div>
+                <!-- Post categories-->
+                <a class="badge bg-secondary text-decoration-none link-light" href="#!">조회수 : ${post.view}</a>
+                <a class="badge bg-secondary text-decoration-none link-light" href="#!">${post.id}</a>
+              </header>
+              <!-- Preview image figure-->
+              <figure class="mb-4"><img class="img-fluid rounded" src="/images/${post.imgfile_name}" alt="" /></figure>
+              <!-- Post content-->
+              <section class="mb-5">
+                <p class="fs-5 mb-4">${post.content}</p>
+              </section>
+            </article>
+            <!-- Comments section-->
+            <section class="mb-5">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <!-- Comment form-->
+                  <form class="mb-4" method="post" action="/posts/insertComments">
+                    <textarea class="form-control" rows="3" name="comment" placeholder="댓글 작성"></textarea>
+                    <input type ="hidden" value="${post.id}" name = "posts_id"  />
+                    <input type="hidden" value="${loggedInUser.username}" id="loggedInUser" class="userInfoId" name="user_id" />
+                    <input type="submit" class="btn btn-primary mt-2" value="댓글 작성"/>
+                  </form>
+                  <!-- Comments list-->
+                  <ul class="comment-section">
+                    <c:forEach items="${comments}" var="comments">
+                      <li class="comment-card">
+                        <div class="d-flex">
+                          <img class="comment-avatar" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="...">
+                          <div>
+                            <div>
+                              <span class="comment-author">${comments.user_id}</span>
+                              <span class="comment-date">
+                                <c:if test="${empty comments.modified_date}">
+                                  ${comments.created_date}
+                                </c:if>
+                                <c:if test="${not empty comments.modified_date}">
+                                  ${comments.modified_date}
+                                </c:if>
+                              </span>
+                              <div class="comment-actions">
+                                  <input type="hidden" name="co"  class="user_idHidden" value="${comments.user_id}">
+                                  <input type="hidden" name="comsid" class="comsid" value="${comments.comsid}">
+                                  <button type="submit" class="deleteCommid">삭제</button>
+                              </div>
+                              
                             </div>
+                            <div class="comment-content">${comments.comment}</div>
+                          </div>
                         </div>
-                    </section>
+                      </li>
+                    </c:forEach>
+                  </ul>
                 </div>
-            </div>
+              </div>
+            </section>
+          </div>
         </div>
+      </div>
       <!-- Latest News-->
 
       <%@ include file='../footer.jsp' %>
@@ -119,6 +188,8 @@
     <script src="/js/script.js"></script>
     <script src="/js/teamid.js"></script>
     <!-- SweetAlert JS -->
-    <script	script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    </script>
   </body>
 </html>

@@ -3,7 +3,7 @@ $(function () {
         event.preventDefault(); 
 
         const searchImg = $('.rd-navbar-search-form-input').val(); // 검색어 값을 가져옴
-
+        console.log("::::::::::::::");
         $.ajax({
             type: "POST",
             url: "/searchImg", 

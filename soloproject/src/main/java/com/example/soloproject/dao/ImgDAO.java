@@ -11,5 +11,7 @@ public interface  ImgDAO {
     public void postInsertImg(ImgVO vo);
 
     public int  selectNum();
+
+    public int deletePostsid(ImgVO imgVO) ; 
     
 }

@@ -88,6 +88,17 @@
                 <!-- Heading Component-->
                 <article class="heading-component">
                   <div class="heading-component-inner">
+                    <h5 class="heading-component-title">Popular news
+                    </h5>
+                  </div>
+                </article>
+                <div class="row row-30">
+                <div id="searchResults" class="row"></div>
+                  
+                </div>
+                <!-- Heading Component-->
+                <article class="heading-component">
+                  <div class="heading-component-inner">
                     <h5 class="heading-component-title">${teamInfo.name}</h5>
                   </div>
                 </article>
@@ -189,42 +200,7 @@
                   </div>
                 </div>
                 <div class="aside-component">
-                  <!-- Heading Component-->
-                  <article class="heading-component">
-                    <div class="heading-component-inner">
-                      <h5 class="heading-component-title">Standings</h5>
-                      <a class="button button-xs button-gray-outline" href="#">Full Standings</a>
-                    </div>
-                  </article>
                   <!-- Table team-->
-                  <div class="table-custom-responsive">
-                    <table class="table-custom table-standings table-classic">
-                      <thead>
-                        <tr>
-                          <th colspan="2">Team Position</th>
-                          <th>W</th>
-                          <th>L</th>
-                          <th>PTS</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><span>아이디 번호</span></td>
-                          <td class="team-inline">
-                            <div class="team-figure">
-                            </div>
-                            <div class="team-title">
-                              <div class="team-name">Sportland</div>
-                              <div class="team-country">USA</div>
-                            </div>
-                          </td>
-                          <td>153</td>
-                          <td>30</td>
-                          <td>186</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
                 </div>
               </aside>
             </div>

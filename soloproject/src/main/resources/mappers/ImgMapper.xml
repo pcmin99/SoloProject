@@ -25,5 +25,11 @@
         ORDER BY id DESC LIMIT 1
     </select>
 
+    <delete id = 'deletePostsid' parameterType="ImgVO">
+        delete 
+        from imgfile
+        where posts_id = #{posts_id}
+    </delete>
+
 
 </mapper>

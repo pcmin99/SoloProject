@@ -1,7 +1,6 @@
 $(function() {
     $('.game-info-team-first').click(function() {
         const homeTeamId = $(this).find('.homeTeamid').val();
-        console.log(homeTeamId);
         if(homeTeamId == null) {
             window.location.href = "../main";
         } else {
@@ -62,7 +61,7 @@ $(function() {
 
 
 
-
+    // 본인이 만든 게시글이면 삭제 x  icon뜨게
     const userHidden = $('.userInfoId').val();
     const user_idHidden = $('.user_idHidden');
 
@@ -102,12 +101,71 @@ $(function() {
         } 
     }
 
-
-
-
-    // if (username == user_id){
-
-    // }
-
+    const loginId = userHidden.match(/Username=([^,]+)/);
+    const loginGoogleId = userHidden.match(/username=([^,]+)/);
     
+    // 삭제 
+    $('.deleteCommid').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const comsid = $(this).siblings('.comsid').val(); // 댓글 번호
+        const comsUserID = $(this).siblings('.user_idHidden').val(); // 아이디
+        
+        // 일반 로그인 ON
+        if(loginId != null && loginId[1] === comsUserID){
+            $.ajax({
+                type: "POST",
+                url: "/postDetail/"+comsid,
+                data: { comsid: comsid},
+                success: function(){
+                    swal("", "삭제 완료 됬습니다.", "success");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);
+                },
+                error: function(){
+                    swal("", "에러가 발생했습니다.", "error");
+                    // setTimeout(function() {
+                    //     window.location.href = "";
+                    // }, 50000);
+    
+                }
+            });
+        } 
+        else if(loginGoogleId != null && loginGoogleId[1] === comsUserID) { // 구글 로그인 ON
+            $.ajax({
+                type: "POST",
+                url: "/postDetail/"+comsid,
+                data: { comsid: comsid},
+                success: function(){
+                    swal("", "삭제 완료 됬습니다.", "success");
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);
+                },
+                error: function(){
+                    swal("", "에러가 발생했습니다.", "error");
+                    // setTimeout(function() {
+                    //     window.location.reload();
+                    // }, 1500);
+    
+                }
+            });
+        }else{ // 아무 id랑도 같지 않다면
+            swal("", "ID를 확인 해주세요..", "error");
+            // setTimeout(function() {
+            //     window.location.reload();
+            // }, 1500);
+        }
+    });
+
+
+
+
+
+
+
+
+
+
 });

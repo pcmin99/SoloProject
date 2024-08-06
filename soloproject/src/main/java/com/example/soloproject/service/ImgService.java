@@ -6,4 +6,6 @@ public interface  ImgService {
     public void     postInsertImg(ImgVO vo);
 
     public int     selectNum();
+
+    public int deletePostsid(ImgVO imgvo);
 }

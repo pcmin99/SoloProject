@@ -49,7 +49,7 @@
                               <table class="table">
                                 <thead class="thead-dark">
                                   <tr>
-                                    <th>Id No.</th>
+                                    <th>No.</th>
                                     <th>User ID</th>
                                     <th>Email</th>
                                     <th>Title </th>

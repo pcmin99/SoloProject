@@ -10,6 +10,7 @@
             INNER JOIN `member` mem
             ON pos.user_id = mem.username
         ORDER BY pos.view DESC
+        limit 5
     </select>
 
 
@@ -22,11 +23,15 @@
         ORDER BY pos.id DESC
     </select>
     
-    <select id='postDetail' parameterType= "Int"  resultType="PostsVO">
+    <select id='postDetail' parameterType= "PostsVO"  resultType="PostsVO">
         select *
         from posts pos
-        where id = #{id}
+                    inner join imgfile i 
+                    on i.posts_id = pos.id
+        where pos.id = #{id}
     </select>
+
+
 
     <delete id = 'deletePost' parameterType="PostsVO">
         delete 
@@ -37,9 +42,25 @@
     <insert id="postInsert"  parameterType="PostsVO" > 
         INSERT INTO posts (content,title,user_id)
         value ( #{content},#{title},#{user_id})
-    
-    
     </insert>
+
+    <!-- 클릭 조회수 증가 -->
+    <update id="clickPosts" parameterType="PostsVO">    
+    update posts
+    set `view` = `view`+1
+    where id = #{id}
+    </update>
+
+
+    <select id='comment' parameterType= "CommentsVO"  resultType="CommentsVO">
+	    select coms.id comsid ,coms.comment comment ,coms.created_date created_date , coms.modified_date modified_date 
+       			,coms.user_id user_id,pos.id id
+       	from comments coms 
+       	inner join posts pos
+       	on coms.posts_id = pos.id
+       	where coms.posts_id = #{id};
+       
+    </select>
     
 
 </mapper>
