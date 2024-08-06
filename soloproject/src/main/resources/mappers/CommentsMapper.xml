@@ -15,6 +15,7 @@
     
     </insert>
 
+
     <delete id = 'deletePostsid' parameterType="CommentsVO">
         delete 
         from comments 
