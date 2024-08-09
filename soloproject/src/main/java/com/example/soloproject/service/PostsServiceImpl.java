@@ -60,4 +60,9 @@ public class PostsServiceImpl implements PostsService {
             return comment;
         
         }
+
+        public List<PostsVO> topViewPosts() {
+            List<PostsVO> topViewPosts = boardPostsDAO.topViewPosts();
+            return topViewPosts;
+        }
 }

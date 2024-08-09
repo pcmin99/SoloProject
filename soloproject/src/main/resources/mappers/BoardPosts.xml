@@ -54,12 +54,21 @@
 
     <select id='comment' parameterType= "CommentsVO"  resultType="CommentsVO">
 	    select coms.id comsid ,coms.comment comment ,coms.created_date created_date , coms.modified_date modified_date 
-       			,coms.user_id user_id,pos.id id
+       			,coms.member_username member_username,pos.id id
        	from comments coms 
        	inner join posts pos
        	on coms.posts_id = pos.id
        	where coms.posts_id = #{id};
        
+    </select>
+
+    <select id ="topViewPosts" parameterType = "PostsVO" resultType="PostsVO">
+    select *
+    from posts pos
+        inner join imgfile i 
+        on i.posts_id = pos.id
+    ORDER BY pos.`view` desc
+    limit 4;
     </select>
     
 

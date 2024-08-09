@@ -97,19 +97,6 @@ public class SoccerListController {
         return "login/login" ; 
     }
 
-    // @PostMapping("/main")
-    // public String home(HttpSession session, Model model) {
-    //     SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-    //     Authentication authentication = securityContext.getAuthentication();
-    //     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-    //     System.out.println("seconCon:::"+securityContext);
-    //     System.out.println("authenti:::"+authentication);
-    //     System.out.println("userdet:::"+userDetails);
-    //     model.addAttribute("user", userDetails);
-
-    //     return "home"; // 뷰 이름 반환
-    // }
-
 
     // 회원 가입
     @PostMapping("/login/join")
@@ -128,9 +115,21 @@ public class SoccerListController {
 
     // // 로그 아웃 
     @PostMapping("/login/logout")
-    public String logout() {
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "main";
     }
+
+    // 푸터
+    @PostMapping(value ="/footer")
+    @ResponseBody
+    public List<PostsVO> topViewPosts(Model m) {        
+    List<PostsVO> list = postsService.topViewPosts();
+
+    m.addAttribute("footerTopViewPosts", list);
+    System.out.println(m);
+    return list;
+}
 
 
     // // defaultValue 검색 값이 없을시 기본으로 프리미어리그 
@@ -238,7 +237,6 @@ public class SoccerListController {
             ObjectMapper objectMapper2 = new ObjectMapper();
             SoccerListVO soccerList2 = objectMapper2.readValue(response2.body(), SoccerListVO.class);        
             model.addAttribute("soccerList2", soccerList2.getApi().getTeams());
-            System.out.println("====================================================================");
 
             // 팀 이름 추출 및 출력
             List<SoccerListVO.Teams> teams = soccerList2.getApi().getTeams();
@@ -311,7 +309,7 @@ public class SoccerListController {
                                 ){
         CommentsVO commentsVO = new CommentsVO() ; 
         commentsVO.setPosts_id(posts_id);
-        commentsVO.setUser_id(user_id);
+        commentsVO.setMember_username(user_id);
         commentsVO.setComment(comment);
         commentsService.insertComment(commentsVO);
         redirectAttributes.addAttribute("posts_id", posts_id);

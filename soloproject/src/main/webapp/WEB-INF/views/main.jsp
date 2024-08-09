@@ -207,7 +207,6 @@
                                   <tr>
                                     <th>View</th>
                                     <th>User ID</th>
-                                    <th></th>
                                     <th>Email</th>
                                     <th>Title </th>
                                     <th>No. </th>
@@ -218,14 +217,6 @@
                                   <tr class="alert" role="alert"  id="postDetail">
                                     <td>${allPosts.view}</td>
                                     <td class="user_idHidden">${allPosts.user_id}</td>
-                                    <td>
-                                      <a href="" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"  id="close123" style="display:none;" >
-                                          <i class="fa fa-close"></i>
-                                             <input type="hidden" value="${postListId.id}" class="postDetailIdX" />
-                                        </span>
-                                      </a>
-                                    </td>
                                     <td>${allPosts.email}</td>
                                     <td>${allPosts.title}</td>
                                     <th scope="row" id ="postDetailId">${allPosts.id}</th>
@@ -268,6 +259,8 @@
     <!-- Javascript-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/footer.js"></script>
+    
     <!-- SweetAlert JS -->
     <script	script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>

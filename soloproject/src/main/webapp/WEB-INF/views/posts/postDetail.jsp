@@ -149,7 +149,7 @@
                           <img class="comment-avatar" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="...">
                           <div>
                             <div>
-                              <span class="comment-author">${comments.user_id}</span>
+                              <span class="comment-author">${comments.member_username}</span>
                               <span class="comment-date">
                                 <c:if test="${empty comments.modified_date}">
                                   ${comments.created_date}
@@ -159,7 +159,7 @@
                                 </c:if>
                               </span>
                               <div class="comment-actions">
-                                  <input type="hidden" name="co"  class="user_idHidden" value="${comments.user_id}">
+                                  <input type="hidden" name="co"  class="user_idHidden" value="${comments.member_username}">
                                   <input type="hidden" name="comsid" class="comsid" value="${comments.comsid}">
                                   <button type="submit" class="deleteCommid">삭제</button>
                               </div>
@@ -187,6 +187,7 @@
     <script src="/js/core.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/teamid.js"></script>
+    <script src="/js/footer.js"></script>
     <!-- SweetAlert JS -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>

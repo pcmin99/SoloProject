@@ -16,7 +16,6 @@ import lombok.Data;
 @Data
 public class CustomOAuth2User implements OAuth2User, UserDetails {
 
-    // db에서 가져온 member 정보 포함
     private final Member member;
     private Map<String, Object> attributes;
 

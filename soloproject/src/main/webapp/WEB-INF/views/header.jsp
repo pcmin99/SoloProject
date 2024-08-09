@@ -103,9 +103,9 @@
                   </div>
                   <!-- RD Navbar List-->
                   <ul class="rd-navbar-list">
-                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"><img src="/images/partners-1-inverse-75x42.png" alt="" width="75" height="42"/></a></li>
-                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"><img src="/images/partners-2-inverse-88x45.png" alt="" width="88" height="45"/></a></li>
-                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"><img src="/images/partners-3-inverse-79x52.png" alt="" width="79" height="52"/></a></li>
+                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"></a></li>
+                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"></a></li>
+                    <li class="rd-navbar-list-item"><a class="rd-navbar-list-link" href="#"></a></li>
                   </ul>
                   <!-- RD Navbar Search-->
                   <div class="rd-navbar-search">

@@ -10,8 +10,8 @@
     </delete>
 
     <insert id='insertComment'>
-        insert into comments (comment,posts_id ,user_id,created_date)
-        value (#{comment},#{posts_id},#{user_id}, now())
+        insert into comments (comment,posts_id ,member_username,created_date)
+        value (#{comment},#{posts_id},#{member_username}, now())
     
     </insert>
 

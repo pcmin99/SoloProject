@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -43,7 +44,6 @@ public class SecurityConfig {
     
 
     // 기본 url, 권한 설정 
-    @SuppressWarnings("removal")
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -53,7 +53,7 @@ public class SecurityConfig {
                 ) // CSRF 보호 비활성화
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/","/WEB-INF/views/login/**","/login/**").permitAll() // /,login 관련 url에 대한 접근 허용
+                                .requestMatchers("/","/WEB-INF/views/login/**","/login/**","/oauth2/**").permitAll() // /,login 관련 url에 대한 접근 허용
                                 .requestMatchers("/js/**","/css/**","/images/**","/fonts/**","/favicon.ico").permitAll() // js 전체 권한 
                                 .requestMatchers("/WEB-INF/views/main.jsp","/main/**").permitAll() // main 페이지
                                 .requestMatchers("/WEB-INF/views/footer/**","/footer/**").permitAll() // footer 페이지
@@ -62,19 +62,21 @@ public class SecurityConfig {
                                 .requestMatchers("/admins/**", "/api/v1/admins/**").hasRole("ADMIN") // 관리자 권한이 필요한 url
                                 .anyRequest().authenticated() // 그외의 모든 요청은 인증 권한 필요
                 )// 3번
-                // .exceptionHandling((exceptionConfig) ->
-                //         exceptionConfig.authenticationEntryPoint(unauthorizedEntryPoint).accessDeniedHandler(accessDeniedHandler)
-                // ) // 401 403 관련 예외처리 -> json 형식의 오류 응답을 설정
-                .formLogin(formLogin ->
-                        formLogin
+                .exceptionHandling((exceptionConfig) ->
+                        exceptionConfig.authenticationEntryPoint(unauthorizedEntryPoint).accessDeniedHandler(accessDeniedHandler)
+                ) // 401 403 관련 예외처리 -> json 형식의 오류 응답을 설정
+                .formLogin(formLogin -> 
+                                {
+                                formLogin
                                 .loginPage("/login") // 1번 -> 사용자 정의 로그인 페이지 
                                 .usernameParameter("username") // 2번-> 로그인시 사용자 이름 파라미터 
                                 .passwordParameter("password") // 3번-> 로그인시 사용자 패스워드 파라미터 
                                 .loginProcessingUrl("/loginonlyLogin") // 4번 로그인 폼 처리 url
                                 .failureHandler(userLoginFailHandler) // 로그인 실패 핸들러
-                                .defaultSuccessUrl("/main", true) // 5번 로그인 성공시 갈 url
+                                .defaultSuccessUrl("/main", true); // 5번 로그인 성공시 갈 url
+                            }
                 ).oauth2Login(oauth2  ->
-                oauth2
+                    oauth2
                         .loginPage("/login") // 페이지
                         .defaultSuccessUrl("/main", true) //로그인 성공시 갈 url
                         .userInfoEndpoint()
@@ -83,14 +85,22 @@ public class SecurityConfig {
                 .logout(logoutConfig ->
                         logoutConfig    
                         .logoutUrl("/login/logout") // 로그아웃을 처리할 url 
+                        .addLogoutHandler(((request, response, authentication) -> {
+                            HttpSession session = request.getSession();
+                            if (session != null) {
+                                session.invalidate();   // 세션 삭제
+                            }
+                        }))
                         .logoutSuccessUrl("/main") // 6번 로그아웃 성공시 이동할 url
                 )
                 .userDetailsService(myUserDetailsService); // 7번 사용자 정의 myUserDetailsService
-        http.sessionManagement(session -> session
-            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션을 생성할 필요가 있을 때만 생성
-                .maximumSessions(1) //세션 최대 허용 수 
-                .maxSessionsPreventsLogin(false) // false이면 중복 로그인하면 이전 로그인이 풀린다.
-        );
+    //     http.sessionManagement(session -> {
+    //             session
+    //             .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 필요할때만 생성
+    //             .maximumSessions(1) //세션 최대 허용 수 
+    //             .maxSessionsPreventsLogin(true) // 동시 로그인 차단
+    //             .expiredUrl("/login/login");
+    // }); 
            
 
         return http.build();
@@ -101,30 +111,17 @@ public class SecurityConfig {
     // 스프링 시큐리티에서 로그아웃시 자동 세션 삭제 이지만 소셜 로그인시 자동 로그인이 계속 되는 문제 때문에 .invalidate~~ 설정
 
         public final AuthenticationEntryPoint unauthorizedEntryPoint = (request, response, authException) -> {
-            ErrorResponse fail = new ErrorResponse(HttpStatus.UNAUTHORIZED, "Spring security unauthorized...");
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            String json = new ObjectMapper().writeValueAsString(fail);
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            PrintWriter writer = response.getWriter();
-            writer.write(json);
-            writer.flush();
+            response.sendRedirect("/login/login");
+            //response.sendRedirect("/login/login"); // 권한 없을시 보낼 url
         };
         
         public final AccessDeniedHandler accessDeniedHandler = (request, response, accessDeniedException) -> {
-            ErrorResponse fail = new ErrorResponse(HttpStatus.FORBIDDEN, "Spring security forbidden...");
-            response.setStatus(HttpStatus.FORBIDDEN.value());
-            String json = new ObjectMapper().writeValueAsString(fail);
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            PrintWriter writer = response.getWriter();
-            writer.write(json);
-            writer.flush();
+            response.sendRedirect("/login/login");
+            //response.sendRedirect("/login/login"); // 권한 없을시 보낼 url
         };
         
 
         
-
-
-
     @Getter
     @RequiredArgsConstructor
     public class ErrorResponse {

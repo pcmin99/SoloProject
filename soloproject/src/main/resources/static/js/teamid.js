@@ -18,27 +18,50 @@ $(function() {
     });
 
 
-
+    // list에서 삭제 표시 
     $('.close123').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
         const id = $(this).find('.postDetailIdX').val();
-        $.ajax({
-            type: "POST",
-            url: "/boardList/"+id,
-            data: { id: id},
-            success: function(){
-                swal("", "삭제 완료 됬습니다.", "success");
-                setTimeout(function() {
-                    window.location.reload();
-                }, 1500);
-            },
-            error: function(){
-                swal("", "에러가 발생했습니다.", "error");
-                setTimeout(function() {
-                    window.location.href = "../posts/boardList";
-                }, 1500);
-
+        swal({
+            title: "삭제 하시겠습니까?",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "취소",
+                    value: false,
+                    visible: true,
+                    className: "",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "확인",
+                    value: true,
+                    visible: true,
+                    className: "",
+                    closeModal: true
+                }
+            }
+        }).then((will) => {
+            if (will) {
+                $.ajax({
+                    type: "POST",
+                    url: "/boardList/"+id,
+                    data: { id: id},
+                    success: function(){
+                        swal("", "삭제 완료 됬습니다.", "success");
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    },
+                    error: function(){
+                        swal("", "에러가 발생했습니다.", "error");
+                        setTimeout(function() {
+                            window.location.href = "../posts/boardList";
+                        }, 1500);
+        
+                    }
+                });
             }
         });
     });
@@ -52,13 +75,6 @@ $(function() {
             window.location.href = "../posts/postDetail/" + id;
         }
     });
-
-    //event.preventDefault();
-
-
-
-
-
 
 
     // 본인이 만든 게시글이면 삭제 x  icon뜨게
@@ -104,7 +120,7 @@ $(function() {
     const loginId = userHidden.match(/Username=([^,]+)/);
     const loginGoogleId = userHidden.match(/username=([^,]+)/);
     
-    // 삭제 
+    // 댓글 삭제 
     $('.deleteCommid').click(function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -113,49 +129,84 @@ $(function() {
         
         // 일반 로그인 ON
         if(loginId != null && loginId[1] === comsUserID){
-            $.ajax({
-                type: "POST",
-                url: "/postDetail/"+comsid,
-                data: { comsid: comsid},
-                success: function(){
-                    swal("", "삭제 완료 됬습니다.", "success");
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1500);
-                },
-                error: function(){
-                    swal("", "에러가 발생했습니다.", "error");
-                    // setTimeout(function() {
-                    //     window.location.href = "";
-                    // }, 50000);
-    
+            swal({
+                title: "삭제 하시겠습니까?",
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "취소",
+                        value: false,
+                        visible: true,
+                        className: "",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "확인",
+                        value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: true
+                    }
+                }
+            }).then((will) => {
+                if (will) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/postDetail/"+comsid,
+                        data: { comsid: comsid},
+                        success: function(){
+                            swal("", "삭제 완료 됬습니다.", "success");
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1500);
+                        },
+                        error: function(){
+                            swal("", "에러가 발생했습니다.", "error");
+                        }
+                    });
                 }
             });
         } 
-        else if(loginGoogleId != null && loginGoogleId[1] === comsUserID) { // 구글 로그인 ON
-            $.ajax({
-                type: "POST",
-                url: "/postDetail/"+comsid,
-                data: { comsid: comsid},
-                success: function(){
-                    swal("", "삭제 완료 됬습니다.", "success");
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1500);
-                },
-                error: function(){
-                    swal("", "에러가 발생했습니다.", "error");
-                    // setTimeout(function() {
-                    //     window.location.reload();
-                    // }, 1500);
-    
+        else if(loginGoogleId != null && loginGoogleId[1] === comsUserID) { // 소셜 로그인 ON
+            swal({
+                title: "삭제 하시겠습니까?",
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "취소",
+                        value: false,
+                        visible: true,
+                        className: "",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "확인",
+                        value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: true
+                    }
+                }
+            }).then((will) => {
+                if (will) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/postDetail/"+comsid,
+                        data: { comsid: comsid},
+                        success: function(){
+                            swal("", "삭제 완료 됬습니다.", "success");
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1500);
+                        },
+                        error: function(){
+                            swal("", "에러가 발생했습니다.", "error");
+                        }
+                    });
                 }
             });
         }else{ // 아무 id랑도 같지 않다면
             swal("", "ID를 확인 해주세요..", "error");
-            // setTimeout(function() {
-            //     window.location.reload();
-            // }, 1500);
         }
     });
 

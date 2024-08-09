@@ -93,6 +93,7 @@
     <script src="/js/core.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/teamid.js"></script>
+        <script src="/js/footer.js"></script>
     <!-- SweetAlert JS -->
     <script	script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>

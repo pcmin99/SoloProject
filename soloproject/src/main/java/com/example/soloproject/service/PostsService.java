@@ -25,4 +25,6 @@ public interface  PostsService {
     public int clickPosts(PostsVO id);
 
     List<CommentsVO> comment(CommentsVO commentsvo) ;
+
+    List<PostsVO> topViewPosts() ; 
 }

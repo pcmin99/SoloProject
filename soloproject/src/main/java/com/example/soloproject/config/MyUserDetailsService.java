@@ -19,8 +19,11 @@ public class MyUserDetailsService implements UserDetailsService {
     
     // UserDetails 객체를 반환하여 일반 로그인 상황에 사용
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        Member member = memberRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("없는 회원"));
-     
+        Member member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("없는 회원"));
+        if (member == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
         return User.builder()
         .username(member.getUsername())
         .password(member.getPassword())

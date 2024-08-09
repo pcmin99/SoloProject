@@ -27,4 +27,6 @@ public interface  BoardPostsDAO {
 
     public List<CommentsVO> comment(CommentsVO commentsvo ); 
 
+
+    public List<PostsVO> topViewPosts();
 }

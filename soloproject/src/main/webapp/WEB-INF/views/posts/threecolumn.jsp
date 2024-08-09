@@ -107,7 +107,7 @@
                     <!-- Post Future-->
                     <article class="post-future post-future-horizontal"><a class="post-future-figure" href="#"><img src="${teamInfo.logo}" alt="" width="370" height="325"/></a>
                       <div class="post-future-main">
-                        <h4 class="post-future-title"><a href="#">Zidane: “We’re not going to change the way we play at the Calderón”</a></h4>
+                        <h4 class="post-future-title">Zidane: “We’re not going to change the way we play at the Calderón”</h4>
                         <div class="post-future-meta">
                           <div class="post-future-time">
                             <time datetime="2020"> ${teamInfo.venue_name}</time>
@@ -229,6 +229,7 @@
     <!-- Javascript-->
     <script src="/js/core.min.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/footer.js"></script>
     <!-- SweetAlert JS -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>
