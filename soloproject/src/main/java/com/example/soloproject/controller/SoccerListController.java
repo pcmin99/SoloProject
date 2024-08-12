@@ -127,7 +127,6 @@ public class SoccerListController {
     List<PostsVO> list = postsService.topViewPosts();
 
     m.addAttribute("footerTopViewPosts", list);
-    System.out.println(m);
     return list;
 }
 
@@ -201,7 +200,6 @@ public class SoccerListController {
         String responseBody = get(apiURL,requestHeaders);    
         NewsVO newsVO = objectMapper.readValue(responseBody, NewsVO.class);
         model.addAttribute("leagueNews", newsVO);
-        System.out.println(responseBody);
 
         // posts main 리스트
         List<PostsVO> allPosts = postsService.allpost();
@@ -241,7 +239,6 @@ public class SoccerListController {
             // 팀 이름 추출 및 출력
             List<SoccerListVO.Teams> teams = soccerList2.getApi().getTeams();
             for (SoccerListVO.Teams team : teams) {
-                System.out.println("Team Name: " + team.getName());
                 String clientId = "VThSYhofsxKXIWAvv9Wx";
                 String clientSecret = "WRmau6BH7U" ; 
                 try {
@@ -254,7 +251,6 @@ public class SoccerListController {
                     // JSON 응답을 NewsVO로 변환 후 모델에 추가
                     NewsVO newsVO = objectMapper.readValue(responseBody, NewsVO.class);
                     model.addAttribute("teamNews", newsVO);
-                    System.out.println(responseBody);
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException("검색어 인코딩 실패",e);
                 }

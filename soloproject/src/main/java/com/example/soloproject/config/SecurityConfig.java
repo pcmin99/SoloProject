@@ -58,8 +58,8 @@ public class SecurityConfig {
                                 .requestMatchers("/WEB-INF/views/main.jsp","/main/**").permitAll() // main 페이지
                                 .requestMatchers("/WEB-INF/views/footer/**","/footer/**").permitAll() // footer 페이지
                                 .requestMatchers("/WEB-INF/views/header/**","/header/**").permitAll() // header 페이지
-                                .requestMatchers("/posts/**", "/WEB-INF/views/posts/**").hasRole("USER") // 사용자 권한이 필요한 url
-                                .requestMatchers("/admins/**", "/api/v1/admins/**").hasRole("ADMIN") // 관리자 권한이 필요한 url
+                                .requestMatchers("/posts/**", "/WEB-INF/views/posts/**").hasAnyRole("USER","ADMIN") // 사용자 권한이 필요한 url
+                                .requestMatchers("/admins/**", "/WEB-INF/views//admins/**").hasRole("ADMIN") // 관리자 권한이 필요한 url
                                 .anyRequest().authenticated() // 그외의 모든 요청은 인증 권한 필요
                 )// 3번
                 .exceptionHandling((exceptionConfig) ->

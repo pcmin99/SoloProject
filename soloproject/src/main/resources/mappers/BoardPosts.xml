@@ -32,7 +32,6 @@
     </select>
 
 
-
     <delete id = 'deletePost' parameterType="PostsVO">
         delete 
         from posts

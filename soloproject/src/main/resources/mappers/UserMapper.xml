@@ -9,4 +9,9 @@
             WHERE username = #{username}
     </select>
 
+    <select id='adminAll' resultType="AdminVO">
+        SELECT *
+        FROM `member`
+    </select>
+
 </mapper>

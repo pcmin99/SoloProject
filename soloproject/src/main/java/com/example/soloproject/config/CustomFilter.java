@@ -20,7 +20,6 @@ public class CustomFilter implements Filter {
 
     public void init(FilterConfig filterConfig ) throws ServletException{
         log.info("asdasd");
-        System.out.println("asd");
         Filter.super.init(filterConfig);
     }
 

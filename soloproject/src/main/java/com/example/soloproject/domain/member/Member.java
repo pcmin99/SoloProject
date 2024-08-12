@@ -39,7 +39,7 @@ public class Member {
     @Column
     private String provider;
 
-    // providerId : 구굴 로그인 한 유저의 고유 ID가 들어감
+    // providerId : 소셜 로그인 한 유저의 고유 ID가 들어감
     @Column
     private String providerId;
 

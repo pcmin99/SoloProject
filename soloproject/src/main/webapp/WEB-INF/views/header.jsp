@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
@@ -24,7 +26,7 @@
         //         }
         //     });
         // });
-
+        
         function confirmLogout() {
             event.preventDefault();  // 
             const username = $('#loggedInUser').val();
@@ -128,6 +130,9 @@
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item"><a class="rd-nav-link" href="/main">Home</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="/posts/boardList">Board</a></li>
+                      <sec:authorize access="hasRole('ROLE_ADMIN')">
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/admins/onecolumn">USER BOARD</a></li>
+                      </sec:authorize> 
                   </ul>
                   <div class="rd-navbar-main-element"></div>
                 </div>
