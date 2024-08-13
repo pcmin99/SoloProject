@@ -26,27 +26,14 @@ Naver api, Google api, rapidapi 를 사용하였으며 모든 api들은 Controll
 ## DB
 ![dbmodelJPG](https://github.com/user-attachments/assets/d0b87c17-6413-4e3e-858a-df4051122220)
 
-movieapp: 
-usertags: 
-tag: 
-usermovie: 
-
-## Proxy
-```cmd
-npm install http-proxy-middleware --save
-```
-이를 이용해 proxy로 포트를 8080으로 연결해주었다.
-또한 build.gradle에서 build 시 react build를 포함할 수 있도록 해주었다.
+comments: 게시글에 관한 댓글 DB
+posts: 게시글 DB
+member: 회원 가입 사용자 DB
+imgfile: 게시글 imgfile DB
 
 ## 시연 동영상
 
 
-
-## 주요 기능
-
-
-### 기본화면
-<img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/2a00d7c4-bca9-4afd-b9b0-fdfe7a60999e">
 
 
 
@@ -67,13 +54,9 @@ npm install http-proxy-middleware --save
 
 
 ### 회원 정보
-<img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/026c4a4c-b799-42c3-902d-953b1ebe64d6">
+
 
 
 ## Spring Security
 ![securityJPG](https://github.com/user-attachments/assets/cc37c525-a412-4c72-920d-5e913236ce50)
 
-
-1. Router
-   
-   Router를 사용하다보니 값이 하트를 누르고 추천 영화를 보러 들어가게 되면 Loading값이 변경되어 있는 상태여서 하트를 누른 값인지 DB를 찾아보기 전에 값이 넘어가서 하트가 눌렸다. 이 값을 useEffect를 이용하여 새로운 화면으로 넘어가기 전에 값을 변경해주는 방식으로 고쳤다.
