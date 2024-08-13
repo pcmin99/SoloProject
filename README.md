@@ -11,6 +11,7 @@
 
 
 ![Mysql](https://img.shields.io/badge/Mysql-000000?style=flat&logo=Mysql)
+![HTML](https://img.shields.io/badge/HTML-000000?style=flat&logo=HTML)
 ![javascript](https://img.shields.io/badge/javascript-000000?style=flat&logo=javascript)
 
 <hr>
