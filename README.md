@@ -24,10 +24,10 @@ Naver api, Google api, rapidapi 를 사용하였으며 모든 api들은 Controll
 ## DB
 ![dbmodelJPG](https://github.com/user-attachments/assets/d0b87c17-6413-4e3e-858a-df4051122220)
 
-movieapp: User 정보
-usertags: 로그인 시 넣은 tag
-tag: 영화 장르
-usermovie: 하트를 눌러서 저장한 영화
+movieapp: 
+usertags: 
+tag: 
+usermovie: 
 
 ## Proxy
 ```cmd
@@ -38,24 +38,19 @@ npm install http-proxy-middleware --save
 
 ## 시연 동영상
 
-https://youtu.be/rckWAuyVa8E
+
 
 ## 주요 기능
 
-### 네비게이션
-
-네비게이션으로는 Movie Web을 누르면 나오면 맨 처음 화면, 상영작, 장르가 있다.
 
 ### 기본화면
 <img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/2a00d7c4-bca9-4afd-b9b0-fdfe7a60999e">
 
-로그인과 회원가입을 해야 기능을 사용할 수 있도록 Router에 조건을 달아주었다.
+
 
 ### 값 입력 - 로그인, 회원가입, 업데이트, 회원탈퇴 등
 <img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/3b5ef867-9d87-41b6-9385-4d49c0918586">
 
-
-로그인과 회원가입은 팝업 형식으로, 나머지는 사이트에서 값을 넣을 수 있도록 해주었다.
 
 ### 홈
 <img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/e08d114f-7de7-4f9e-81bb-b51eb282362c">
@@ -112,6 +107,10 @@ API로 받아 올 장르를 고르면 맞는 결과가 나온다.
 이 부분도 포스터를 누르면 영화 세부 정보 화면으로 넘어가게 된다.
 
 ## 구현하면서 생긴 문제
+
+##Spring Security
+![securityJPG](https://github.com/user-attachments/assets/cc37c525-a412-4c72-920d-5e913236ce50)
+
 
 1. Router
    
