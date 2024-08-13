@@ -99,26 +99,15 @@
                 <!-- Heading Component-->
                 <article class="heading-component">
                   <div class="heading-component-inner">
-                    <h5 class="heading-component-title">${teamInfo.name}</h5>
+                    <h5 class="heading-component-title">${teamInfo.name} <br/>
+                     Home Stadium : ${teamInfo.venue_name}
+                     </h5>
                   </div>
                 </article>
                 <div class="row row-30">
                   <div class="col-md-12">
                     <!-- Post Future-->
                     <article class="post-future post-future-horizontal"><a class="post-future-figure" href="#"><img src="${teamInfo.logo}" alt="" width="370" height="325"/></a>
-                      <div class="post-future-main">
-                        <h4 class="post-future-title">Zidane: “We’re not going to change the way we play at the Calderón”</h4>
-                        <div class="post-future-meta">
-                          <div class="post-future-time">
-                            <time datetime="2020"> ${teamInfo.venue_name}</time>
-                          </div>
-                        </div>
-                        <hr/>
-                        <div class="post-future-text">
-                          ${teamInfo}
-                          <p>Zidane spoke to the media at the Real Madrid City. The Whites coach explained how the team is going in to the second leg of the Champions...</p>
-                        </div>
-                      </div>
                     </article>
                   </div>
                 </div>

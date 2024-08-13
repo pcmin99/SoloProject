@@ -1,11 +1,9 @@
 package com.example.soloproject.config;
 
-import java.io.PrintWriter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
@@ -77,7 +74,7 @@ public class SecurityConfig {
                             }
                 ).oauth2Login(oauth2  ->
                     oauth2
-                        .loginPage("/login") // 페이지
+                        .loginPage("/login/login") // 페이지
                         .defaultSuccessUrl("/main", true) //로그인 성공시 갈 url
                         .userInfoEndpoint()
                         .userService(customOAuth2UserService)

@@ -26,7 +26,10 @@
         //         }
         //     });
         // });
-        
+        const ligo = $('.userInfoId').val();
+        console.log("123123");
+        console.log(ligo);
+
         function confirmLogout() {
             event.preventDefault();  // 
             const username = $('#loggedInUser').val();

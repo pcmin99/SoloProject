@@ -75,11 +75,9 @@ public class    CustomOAuth2UserService extends DefaultOAuth2UserService {
                             .providerId(providerId)
                             .build();
                     Member savedMember = memberRepository.save(newMember);
-                    //System.out.println("Saved Member: " + savedMember);
                     return savedMember;
                 });
     
-        //System.out.println("Loaded Member: " + member);
         return new CustomOAuth2User(member, oAuth2User.getAttributes());
     }
     
