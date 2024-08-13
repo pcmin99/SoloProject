@@ -68,5 +68,10 @@ imgfile: 게시글 imgfile DB
 
 
 ## Spring Security
+- 현재는 회원 가입시 자동으로 role 컬럼이 자동으로 USER로 저장 됩니다.
+- 로그인과 회원 가입은 JPA를 사용하였습니다.
+- ADMIN 권한은 모든 화면을 볼수 있게 해놨으며 USER권한은 userBoard가 자체가 안보입니다.
+- 밑에 사진은 Back에서 보내는 에러 문구 입니다
+![backLoginerror](https://github.com/user-attachments/assets/7d7234d9-ea6d-48a6-87c0-083a321139b9)
+<hr/>
 ![securityJPG](https://github.com/user-attachments/assets/cc37c525-a412-4c72-920d-5e913236ce50)
-
