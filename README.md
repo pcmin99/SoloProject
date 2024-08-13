@@ -4,12 +4,12 @@
 
 ## 개발 언어
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot)
-![Java](https://img.shields.io/badge/Java-6DB33F?style=flat&logo=SpringBoot)
+![Java](https://img.shields.io/badge/Java-6DB33F?style=flat&logo=Java)
 
-![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat)
-![JPA](https://img.shields.io/badge/JPA-000000?style=flat)
-![Mysql](https://img.shields.io/badge/Mysql-000000?style=flat)
-![javascript](https://img.shields.io/badge/javascript-000000?style=flat)
+![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat&logo=MyBatis)
+![JPA](https://img.shields.io/badge/JPA-000000?style=flat&logo=JPA)
+![Mysql](https://img.shields.io/badge/Mysql-000000?style=flat&logo=Mysql)
+![javascript](https://img.shields.io/badge/javascript-000000?style=flat&logo=javascript)
 
 <hr>
 
