@@ -12,39 +12,14 @@
 
 <hr>
 
-## 배포
-
-GCP를 이용하여 배포해보았다.
-![배포쓰](https://github.com/jeongdonggi/MovieWeb/assets/100845304/da6ac577-b4b0-49e1-a703-b5cd14941597)
-
-#### VM 인스턴스 생성
-1. VM 인스턴스 생성
-2. 로컬에서 SSH Key 생성
-3. 공개키를 GCP 원격 서버에 등록
-4. GCP 인스턴스에 공개키 등록
-5. 방화벽에서 TCP port 8080 설정
-6. vscode에 Remote SSH를 이용하여 연결
-7. VPC 네트워크에서 방화벽 규칙에 포트 지정(:8080)
-8. config IdentityFile에 개인키 등록
-9. 고정 외부 IP로 승격
-
-
 #### SQL 연결
 1. SQL 생성 - MYSQL
-2. 승인된 네트워크에 VM 고정 외부 IP 넣기
-3. SSH로 MYSQL 설치 후 DB 설정
-4. SpringBoot에 yml 설정 변경
-
-
-#### 배포
-1. jar 파일 넣기
-2. nohup를 이용하여 배포
+2. Tool : dbeaver 사용
+3. SpringBoot에 properties 설정 변경
 
 
 ## API 연결
-axois로 TMDB API를 가져와서 사용하였다. 프론트는 React(PropTypes 사용), 백엔드는 SpringBoot로 구현하였다.
-restAPI를 구현해보기 위해 restController로 값을 받아주었고 리액트에서는 Router를 이용하여 화면전환을 해주었다.
-db는 MySQL을 이용하였다.
+Naver api, Google api, rapidapi 를 사용하였으며 모든 api들은 Controller에서 구현 되었다. 
 
 ## DB
 <img width="500" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/85e5c74a-a2fa-4f9f-9150-8cd59973ddc7">
