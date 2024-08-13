@@ -48,15 +48,18 @@ npm install http-proxy-middleware --save
 
 
 
-### 값 입력 - 로그인, 회원가입, 업데이트, 회원탈퇴 등
-<img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/3b5ef867-9d87-41b6-9385-4d49c0918586">
+### 홈 화면 - User
+![main](https://github.com/user-attachments/assets/e6a5c017-eb19-48e2-bbc9-6a786ad0cc1f)
 
-
+<hr/>
+### 홈 화면 - Admin
+![adminmain](https://github.com/user-attachments/assets/3106688f-de13-4ec5-8da7-26ee11e8df1a)
 
 ### 로그인 화면
 
 ![123123](https://github.com/user-attachments/assets/436d54c0-e219-41ea-8c23-9bfef821933c)
 
+회원 가입시 ID 확인 하지 않으면 아예 넘어가지 않습니다. 
 구글 ,네이버 소셜 로그인 가능 합니다.
 
 
