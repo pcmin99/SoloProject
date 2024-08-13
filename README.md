@@ -52,11 +52,9 @@ npm install http-proxy-middleware --save
 <img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/3b5ef867-9d87-41b6-9385-4d49c0918586">
 
 
-### 홈
-<img width="1120" alt="image" src="https://github.com/jeongdonggi/MovieWeb/assets/100845304/e08d114f-7de7-4f9e-81bb-b51eb282362c">
 
 ### 로그인 화면
-![image](https://github.com/user-attachments/assets/6f39c2cd-9a91-4fce-a3b3-4de42536139e)
+![캡처](https://github.com/user-attachments/assets/f6079bc6-06f6-4747-a451-65c84d78f680)
 
 구글 ,네이버 소셜 로그인 가능 합니다.
 
