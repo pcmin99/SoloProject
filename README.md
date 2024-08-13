@@ -54,7 +54,8 @@ npm install http-proxy-middleware --save
 
 
 ### 로그인 화면
-![캡처](https://github.com/user-attachments/assets/f6079bc6-06f6-4747-a451-65c84d78f680)
+
+![캡처](https://github.com/user-attachments/assets/0c7f9ea7-b103-4b18-8e6a-af4f91378a1a)
 
 구글 ,네이버 소셜 로그인 가능 합니다.
 
