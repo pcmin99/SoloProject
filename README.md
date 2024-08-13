@@ -42,7 +42,8 @@ imgfile: 게시글 imgfile DB
 - 커뮤니티 글은 내가 쓴 글에만 X가 뜨며
 - 댓글은 삭제 텍스트는 동일하게 뜨지만 세션 값이 다를시 확인 문구가 뜹니다
 - 관리자 권한 있는 아이디일시 댓글은 삭제가 가능합니다.
-
+### 예제 입니다.
+![aosdb](https://github.com/user-attachments/assets/8ab68778-9479-4c04-856d-23a7351f4312)
 
 ### 홈 화면 - User
 ![main](https://github.com/user-attachments/assets/e6a5c017-eb19-48e2-bbc9-6a786ad0cc1f)
