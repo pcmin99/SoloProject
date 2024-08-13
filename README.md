@@ -22,7 +22,7 @@
 Naver api, Google api, rapidapi 를 사용하였으며 모든 api들은 Controller에서 구현 되었다. 
 
 ## DB
-https://github.com/pcmin99/SoloProject/issues/2#issue-2462472410
+![dbmodelJPG](https://github.com/user-attachments/assets/d0b87c17-6413-4e3e-858a-df4051122220)
 
 movieapp: User 정보
 usertags: 로그인 시 넣은 tag
