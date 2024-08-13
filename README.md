@@ -61,8 +61,8 @@ imgfile: 게시글 imgfile DB
 구글 ,네이버 소셜 로그인 가능 합니다.
 
 
-### 회원 정보
-
+### 회원 정보 관리자가 보는 리스트 입니다.
+![userdb](https://github.com/user-attachments/assets/3cd8a60a-bef7-4839-aae8-497d6743ea90)
 
 
 ## Spring Security
