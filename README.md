@@ -16,13 +16,13 @@
 1. SQL 생성 - MYSQL
 2. Tool : dbeaver 사용
 3. SpringBoot에 properties 설정 변경
-
+<hr/>
 
 ## API 연결
 Naver api, Google api, rapidapi 를 사용하였으며 모든 api들은 Controller에서 구현 되었다. 
 실시간 현재 시간 기준으로 뉴스 데이터를 가져오는 네이버 검색 api
 사용자에게 텍스트를 받아서 텍스트에 대한 뉴스를 가져오는 네이버 api
-
+<hr/>
 ## DB
 ![dbmodelJPG](https://github.com/user-attachments/assets/d0b87c17-6413-4e3e-858a-df4051122220)
 
@@ -30,6 +30,7 @@ comments: 게시글에 관한 댓글 DB
 posts: 게시글 DB
 member: 회원 가입 사용자 DB
 imgfile: 게시글 imgfile DB
+<hr/>
 
 ## 시연 동영상
 
