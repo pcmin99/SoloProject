@@ -5,7 +5,9 @@ react를 이용한 Movie App. TMDB API를 이용하였다.
 ## 개발 언어
 ![REACT](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=FFFFFF)
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot)
-(https://img.shields.io/badge/MyBatis-000000?style=flat)
+![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat)
+![JPA](https://img.shields.io/badge/JPA-000000?style=flat)
+
 
 
 <hr>
