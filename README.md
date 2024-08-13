@@ -1,6 +1,6 @@
-# Movie App
+#
 
-react를 이용한 Movie App. TMDB API를 이용하였다.
+영국 프리미어리그 축구 팀 소개 및 커뮤니티 프로젝트 입니다. 
 
 ## 개발 언어
 ![REACT](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=FFFFFF)
