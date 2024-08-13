@@ -3,20 +3,20 @@
 영국 프리미어리그 축구 팀 소개 및 커뮤니티 프로젝트 입니다. 
 
 ## 개발 언어
-![SpringBoot](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot)
-![Java](https://img.shields.io/badge/Java-6DB33F?style=flat&logo=Java)
-![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat&logo=MyBatis)
-![JPA](https://img.shields.io/badge/JPA-000000?style=flat&logo=JPA)
-![SpringSecurity](https://img.shields.io/badge/SpringSecurity-000000?style=flat&logo=SpringSecurity)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=SpringBoot&logoColor=white)
+![Java](https://img.shields.io/badge/Java-6DB33F?style=flat&logo=Java&logoColor=white)
+![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=flat&logo=MyBatis&logoColor=white)
+![JPA](https://img.shields.io/badge/JPA-000000?style=flat&logo=JPA&logoColor=white)
+![SpringSecurity](https://img.shields.io/badge/SpringSecurity-000000?style=flat&logo=SpringSecurity&logoColor=white)
 
 
-![Mysql](https://img.shields.io/badge/Mysql-000000?style=flat&logo=Mysql)
+![Mysql](https://img.shields.io/badge/Mysql-000000?style=flat&logo=Mysql&logoColor=white)
 
-![HTML](https://img.shields.io/badge/HTML-000000?style=flat&logo=HTML)
-![javascript](https://img.shields.io/badge/javascript-000000?style=flat&logo=javascript)
+![HTML](https://img.shields.io/badge/HTML-000000?style=flat&logo=HTML&logoColor=white)
+![javascript](https://img.shields.io/badge/javascript-000000?style=flat&logo=javascript&logoColor=white)
 
 
-![apachetomcat](https://img.shields.io/badge/apachetomcat-000000?style=flat&logo=apachetomcat)
+![apachetomcat](https://img.shields.io/badge/apachetomcat-000000?style=flat&logo=apachetomcat&logoColor=white)
 
 
 <hr>
