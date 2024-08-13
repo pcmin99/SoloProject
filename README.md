@@ -52,6 +52,7 @@ npm install http-proxy-middleware --save
 ![main](https://github.com/user-attachments/assets/e6a5c017-eb19-48e2-bbc9-6a786ad0cc1f)
 
 <hr/>
+
 ### 홈 화면 - Admin
 ![adminmain](https://github.com/user-attachments/assets/3106688f-de13-4ec5-8da7-26ee11e8df1a)
 
